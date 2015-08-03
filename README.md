@@ -9,16 +9,16 @@
 - использование конкретных библиотек описано ниже
 
 ## Поддерживаемые языки
-- Javascript
+- JavaScript
 - Python
 - to be continued... (java, ruby, php)
 
-## Пример использования на js
+## Пример использования на JavaScript
     var botan = require('./botan.js')(token);
 
     botan.track(message, 'Start');
 
-## Пример использования на python
+## Пример использования на Python
 Требуется библиотека requests. Установка: 
     
     pip install requests
@@ -31,3 +31,5 @@
     messageDict = {}
     print botan.track(token, uid, messageDict, 'Search')
 В отличие от js, в питоне пока что требуется явно передавать ID юзера в поле uid.
+
+Пулл-реквесты приветствуются!
