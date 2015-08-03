@@ -1,6 +1,6 @@
 var request = require("request");
 
-var url = 'http://olmer.haze.yandex.net/botan?token=#token#&uid=#uid#&name=#name#';
+var url_template = 'http://olmer.haze.yandex.net/botan?token=#token#&uid=#uid#&name=#name#';
 
 module.exports = function(apikey) {
     token = apikey;
@@ -8,7 +8,7 @@ module.exports = function(apikey) {
         track: function(message, name) {
             uid = message.from.id;
             name = name ? name : 'Message';
-            url = url.replace('#token#', token).replace('#uid#', uid).replace('#name#', name);
+            url = url_template.replace('#token#', token).replace('#uid#', uid).replace('#name#', name);
             //console.log(url);
             request({
                     url: url,
