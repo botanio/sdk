@@ -34,8 +34,11 @@
 
 ## HTTP API
 URL: http://olmer.haze.yandex.net/botan (временный)
+
 GET-параметры: token, uid, опциональный name
+
 В теле POST-запроса - json с данными события или сообщения
+
 Ответ придет в json вида:
 - {"status": "accepted"} при успехе
 - {"status": "failed"} или  {"status": "bad request"} при ошибках
