@@ -13,7 +13,8 @@
 ## Поддерживаемые языки
 - JavaScript
 - Python
-- to be continued... (java, ruby, php)
+- Ruby
+- to be continued... (java, php)
 
 ## Пример использования на JavaScript
     var botan = require('./botan.js')(token);
