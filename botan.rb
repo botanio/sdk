@@ -1,6 +1,6 @@
 #usage example:
 #
-#require botan
+#require_relative 'botan'
 #
 #puts Botan.track(1111, 1, {'text' => 2}, 'Search')
 #

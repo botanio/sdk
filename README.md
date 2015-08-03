@@ -35,6 +35,14 @@
     print botan.track(token, uid, messageDict, 'Search')
 В отличие от js, в питоне пока что требуется явно передавать ID юзера в поле uid.
 
+## Пример использования на Ruby
+
+	require_relative 'botan'
+	token = 1111
+	uid = 1
+	message = { text: 'text' }
+	puts Botan.track(token, uid, message, 'Search')
+
 ## HTTP API
 URL: http://olmer.haze.yandex.net/botan (временный)
 
