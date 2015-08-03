@@ -20,9 +20,11 @@
 
 ## Пример использования на python
 Требуется библиотека requests. Установка: 
+    
     pip install requests
 
 Пример:
+
     import botan
     token = 1
     uid = 2    
