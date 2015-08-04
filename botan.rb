@@ -9,7 +9,7 @@ module Botan
   require 'net/https'
   require 'json'
 
-  URI_TEMPLATE = 'http://retention.yurich.serp.yandex.ru/botan?token=%{token}&uid=%{uid}&name=%{name}';
+  URI_TEMPLATE = 'https://api.botan.io/track?token=%{token}&uid=%{uid}&name=%{name}';
 
   def self.track(token, uid, message, name = 'Message')
     begin

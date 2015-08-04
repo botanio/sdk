@@ -1,6 +1,6 @@
 var request = require("request");
 
-var url_template = 'http://olmer.haze.yandex.net/botan?token=#token#&uid=#uid#&name=#name#';
+var url_template = 'https://api.botan.io/track?token=#token#&uid=#uid#&name=#name#';
 
 module.exports = function(apikey) {
     token = apikey;

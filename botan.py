@@ -11,7 +11,7 @@
 import requests
 import json
 
-url_template = 'http://olmer.haze.yandex.net/botan?token=#token#&uid=#uid#&name=#name#';
+url_template = 'https://api.botan.io/track?token=#token#&uid=#uid#&name=#name#';
 
 def track(token, uid, message, name = 'Message'):
     global url_template
