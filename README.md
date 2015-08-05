@@ -44,7 +44,7 @@
 	puts Botan.track(token, uid, message, 'Search')
 
 ## HTTP API
-URL: http://olmer.haze.yandex.net/botan (временный)
+URL: https://api.botan.io/track
 
 GET-параметры: token, uid, опциональный name
 
