@@ -5,9 +5,9 @@ Here you can find how to setup Yandex.Appmetrica account and code examples of Bo
 
 
 ## Creating account
- * Register at http://appmetrika.yandex.ru/
+ * Register at http://appmetrica.yandex.com/
  * Create your app there
- * Get API key at settings tab and save it. You will use as token for Botan calls.
+ * Get API key at settings tab and save it. You will use it as token for Botan calls.
 
 ## Usage
 You can use botan API via libraries for programming language you use.
@@ -51,14 +51,11 @@ It's required to pass `uid` (user id you get from Telegram) at python lib calls.
 ### HTTP API
 Base url is: https://api.botan.io/track
 
-You can put data to botan using POST or GET methods.
-	
-For GET method please provide token, uid, name (optional) arguments like that:
-	curl -XGET https://api.botan.io/track?token=API_KEY&uid=UID
+You can put data to botan using POST method.
 
-For POST data please provide json document at post data. Like that:
-	curl -XPOST https://api.botan.io/track -d '{"token:" "API_KEY", "uid": "UID"}
+Url should look like https://api.botan.io/track?token=API_KEY&uid=UID
+Please provide json document at post body.
 
-Response is a json document like that:
+API response is a json document
 	* on success: {"status": "accepted"}
 	* on failure: {"status": "failed"} or {"status": "bad request"}
