@@ -1,6 +1,6 @@
 {
   "name": "botanio",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Botan SDK",
   "main": "botan.js",
   "repository": {
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/botanio/sdk/issues"
   },
-  "homepage": "https://github.com/botanio/sdk#readme"
+  "homepage": "https://github.com/botanio/sdk#readme",
+  "dependencies": {
+    "request": "2.57.0"
+  }
 }
