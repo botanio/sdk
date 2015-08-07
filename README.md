@@ -1,6 +1,6 @@
-Botan SDK
+#Botan SDK
 
-Botan is a telegram bot analytics system (based on Yandex.Appmetrika).
+Botan is a telegram bot analytics system (based on Yandex.Appmetrica).
 Here you can find how to setup Yandex.Appmetrica account and code examples of Botan SDK usage.
 
 
