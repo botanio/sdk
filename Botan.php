@@ -41,15 +41,13 @@ class Botan
         }
 
         $options = array(
-            CURLOPT_URL => self::BASE_URL,
+            CURLOPT_URL => self::BASE_URL . "?token={$token}&uid={$uid}&name={$name}",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => [
-                'token' => $token,
-                'uid' => $uid,
-                'name' => $name,
-                'message' => json_encode($message)
-            ]
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/json'
+            ],
+            CURLOPT_POSTFIELDS => json_encode($message)
         );
 
         curl_setopt_array(static::$curl, $options);
