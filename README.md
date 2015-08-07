@@ -21,7 +21,7 @@ More languages (PHP, Java, C#, etc.) are coming soon!
 Alternatively, you can use Botan API via HTTP calls (please see below).
 
 
-## Javacript example
+## JavaScript example
 Install npm: `npm install botanio`
 ```js
 var botan = require('botanio')(token);
