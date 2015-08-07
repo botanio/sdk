@@ -6,8 +6,8 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
 
 ## Creating an account
  * Register at http://appmetrica.yandex.com/
- * After registration you will be redirected to the app creation form. Fill it (please use @YourBotName as a name) and push "Create" button.
- * Now you`ll get popup with info about your app. The most important one is an Application ID. You will use it as a token for Botan API calls. Also its always available from app settings page.
+ * After registration you will be prompted to create Application. Please use @YourBotName as a name.
+ * Save an API key from settings page, you will use it as a token for Botan API calls.
  * Download lib for your language, and use it as described below. Don`t forget to insert your token!
 
 ## SDK usage
