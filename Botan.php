@@ -14,21 +14,22 @@ namespace YourProject;
  *     $messageObj = json_decode($message_json, true);
  *     $messageData = $messageObj['message'];
  *
- *     $botan = new Botan($this->token);
+ *     $botan = new YourProject\Botan($this->token);
  *     $botan->track($messageData, 'Start');
  * }
  *
  */
-class Botan 
-{
-	/**
-	 * @var string Tracker url
-	 */
+
+class Botan {
+
+    /**
+    * @var string Tracker url
+    */
     protected $template_uri = 'https://api.botan.io/track?token=#TOKEN&uid=#UID&name=#NAME';
 
-	/**
-	 * @var string Yandex appmetrika application api_key
-	 */
+    /**
+     * @var string Yandex appmetrika application api_key
+     */
     protected $token;
 
     function __construct($token) {
@@ -38,7 +39,7 @@ class Botan
         $this->token = $token;
     }
 
-	protected function request($url, $body) {
+    protected function request($url, $body) {
         $ch = curl_init($url);
         curl_setopt_array($ch, [
             CURLOPT_POST => true,
@@ -58,7 +59,7 @@ class Botan
 
         return [
             'error' => $error,
-            'response' => $responseData,
+            'response' => $responseData
         ];
     }
 
