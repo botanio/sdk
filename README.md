@@ -1,35 +1,28 @@
 #Botan SDK
 
-Botan is a telegram bot analytics system (based on Yandex.Appmetrica).
-Here you can find how to setup Yandex.Appmetrica account and code examples of Botan SDK usage.
+Botan is a telegram bot analytics system based on [Yandex.Appmetrica](http://appmetrica.yandex.com/).
+In this document you can find how to setup Yandex.Appmetrica account, as well as examples of Botan SDK usage.
 
 
-## Creating account
+## Creating an account
  * Register at http://appmetrica.yandex.com/
  * Create your app there
- * Get API key at settings tab and save it. You will use it as token for Botan calls.
+ * Get an API key at the settings tab and save it. You will use it as a token for Botan API calls.
 
-## Usage
-You can use botan API via libraries for programming language you use.
-Or you can use HTTP API.
-
-Currently you can get libraries for following programming languages:
+## SDK usage
+Or you can issue Botan API calls via the HTTP API. We also have libraries for the following programming languages:
  * JavaScript
  * Python
  * Ruby
 
 
 ### Javacript example
-Install npm: `npm install botanio`
-```js
-var botan = require('botanio')(token);
-
-botan.track(message, 'Start');
-```
+	var botan = require('./botan.js')(token);
+    	botan.track(message, 'Start');
 
 ### Python example
 You need to install requests library to use python botan lib.
-You can do it like that:
+You can do it like this:
 	pip install requests
 
 Code:
@@ -40,7 +33,7 @@ Code:
 	messageDict = {}
 	print botan.track(token, uid, messageDict, 'Search')
 
-It's required to pass `uid` (user id you get from Telegram) at python lib calls.
+It's necessary to pass `uid` (user id you get from Telegram) into python lib calls.
 
 ### Ruby example
 `uid` is a user id you get from Telegram.
@@ -53,13 +46,13 @@ It's required to pass `uid` (user id you get from Telegram) at python lib calls.
 
 
 ### HTTP API
-Base url is: https://api.botan.io/track
+The base url is: https://api.botan.io/track
 
-You can put data to botan using POST method.
+You can put data to Botan using POST method.
 
-Url should look like https://api.botan.io/track?token=API_KEY&uid=UID
+The url should look like https://api.botan.io/track?token=API_KEY&uid=UID
 
-Please provide json document at post body.
+Please provide a json document as the post body.
 
 API response is a json document:
 
