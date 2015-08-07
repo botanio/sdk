@@ -56,7 +56,11 @@ class Botan {
     public function track($message, $event_name) {
         $uid = $message['from']['id'];
         $event_name = $event_name ? $event_name : 'Message';
-        $url = str_replace(array('#TOKEN', '#UID', '#NAME'), array($this->token, $uid, $event_name), $this->template_uri);
+        $url = str_replace(
+            array('#TOKEN', '#UID', '#NAME'), 
+            array($this->token, $uid, $event_name), 
+            $this->template_uri
+        );
         $result = $this->request($url, $message);
     }
 }
