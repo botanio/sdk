@@ -13,11 +13,12 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
 ## SDK usage
 We have libraries for the following languages:
  * JavaScript
+ * PHP
  * Python
  * Ruby
  * Rust
 
-More languages (PHP, Java, C#, etc.) are coming soon!
+More languages (Java, C#, etc.) are coming soon!
 
 Alternatively, you can use Botan API via HTTP calls (please see below).
 
@@ -28,6 +29,20 @@ Install npm: `npm install botanio`
 var botan = require('botanio')(token);
 
 botan.track(message, 'Start');
+```
+
+## PHP example
+You need to put the class in a convenient place.
+```php
+private $token = 'token';
+
+public function _incomingMessage($message_json) {
+    $messageObj = json_decode($message_json, true);
+    $messageData = $messageObj['message'];
+	
+    $botan = new Botan($this->token);
+    $botan->track($messageData, 'Start');
+}
 ```
 
 ## Python example
