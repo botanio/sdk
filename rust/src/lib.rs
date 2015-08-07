@@ -45,7 +45,7 @@ impl Botan {
         Ok(self)
     }
 
-    pub fn track<M: Encodable>(&self, uid: u64, message: &M, name: &str) -> Result<(), BotanError> {
+    pub fn track<M: Encodable>(&self, uid: u32, message: &M, name: &str) -> Result<(), BotanError> {
         let mut url = self.url.clone();
         let s_uid = &uid.to_string();
         let query_pairs: Vec<(&str, &str)> = vec![
