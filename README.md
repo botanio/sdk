@@ -6,8 +6,9 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
 
 ## Creating an account
  * Register at http://appmetrica.yandex.com/
- * Create your app there
- * Get an API key at the settings tab and save it. You will use it as a token for Botan API calls.
+ * After registration you will be redirected to the app creation form. Fill it (please use @YourBotName as a name) and push "Create" button.
+ * Now you`ll get popup with info about your app. The most important one is an Application ID. You will use it as a token for Botan API calls. Also its always available from app settings page.
+ * Download lib for your language, and use it as described below. Don`t forget to insert your token!
 
 ## SDK usage
 We have libraries for the following languages:
@@ -15,8 +16,9 @@ We have libraries for the following languages:
  * Python
  * Ruby
 
-More languages(PHP, Java, C#, etc.) coming soon!
-Or you can call Botan API via the HTTP (described below).
+More languages (PHP, Java, C#, etc.) are coming soon!
+
+Alternatively, you can use Botan API via HTTP calls (please see below).
 
 
 ## Javacript example
@@ -67,4 +69,6 @@ API response is a json document:
 * on failure: {"status": "failed"} or {"status": "bad request"}
  
 ##Contribution
-We welcome any contributions as pull-requests! Feel free to write more libraries for the languages we are not supporting yet.
+We welcome any contributions as pull-requests!
+
+Feel free to write more libraries for the languages we are not supporting yet.
