@@ -13,10 +13,11 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
 ## SDK usage
 We have libraries for the following languages:
  * JavaScript
+ * PHP
  * Python
  * Ruby
 
-More languages (PHP, Java, C#, etc.) are coming soon!
+More languages (Java, C#, etc.) are coming soon!
 
 Alternatively, you can use Botan API via HTTP calls (please see below).
 
