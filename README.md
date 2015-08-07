@@ -46,6 +46,16 @@ public function _incomingMessage($message_json) {
     $botan->track($messageData, 'Start');
 }
 ```
+Alternatively using Composer
+```
+$ php composer.phar require iprit/botan-php:*
+```
+```php
+$botan = new IPRIT\BotanSDK\Botan($this->token);
+$botan->track($messageData, 'Start');
+```
+
+
 
 ## Python example
 You need to install requests library to use python botan lib.
