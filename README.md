@@ -1,41 +1,45 @@
-# Botan SDK
-Библиотеки для подключения к аналитике телеграм-ботов Botan.
+Botan SDK
 
-**Внимание, botan пока доступен только во внутренней сети яндекса**
+Botan is a telegram bot analytics system (based on Yandex.Appmetrika).
+Here you can find how to setup Yandex.Appmetrica account and code examples of Botan SDK usage.
 
-## Создание аккаунта
-- зарегистрируйтесь на http://appmetrika.yandex.ru/
-- добавьте там приложение
-- в настройках приложения посмотрите свой API key и сохраните его. Он понадобится как токен при отправке данных
-- скачайте библиотеку на нужном вам языке или воспользуйтесь HTTP API (описание внизу)
-- использование конкретных библиотек описано ниже
 
-## Поддерживаемые языки
-- JavaScript
-- Python
-- Ruby
-- to be continued... (java, php)
+## Creating account
+ * Register at http://appmetrika.yandex.ru/
+ * Create your app there
+ * Get API key at settings tab and save it. You will use as token for Botan calls.
 
-## Пример использования на JavaScript
-    var botan = require('./botan.js')(token);
+## Usage
+You can use botan API via libraries for programming language you use.
+Or you can use HTTP API.
 
-    botan.track(message, 'Start');
+Currently you can get libraries for following programming languages:
+ * JavaScript
+ * Python
+ * Ruby
 
-## Пример использования на Python
-Требуется библиотека requests. Установка: 
-    
-    pip install requests
 
-Пример:
+### Javacript example
+	var botan = require('./botan.js')(token);
+    	botan.track(message, 'Start');
 
-    import botan
-    token = 1
-    uid = 2    
-    messageDict = {}
-    print botan.track(token, uid, messageDict, 'Search')
-В отличие от js, в питоне пока что требуется явно передавать ID юзера в поле uid.
+### Python example
+You need to install requests library to use python botan lib.
+You can do it like that:
+	pip install requests
 
-## Пример использования на Ruby
+Code:
+
+	import botan
+	token = 1
+	uid = 2    
+	messageDict = {}
+	print botan.track(token, uid, messageDict, 'Search')
+
+It's required to pass `uid` (user id you get from Telegram) at python lib calls.
+
+### Ruby example
+`uid` is a user id you get from Telegram.
 
 	require_relative 'botan'
 	token = 1111
@@ -43,16 +47,18 @@
 	message = { text: 'text' }
 	puts Botan.track(token, uid, message, 'Search')
 
-## HTTP API
-URL: https://api.botan.io/track
 
-GET-параметры: token, uid, опциональный name
+### HTTP API
+Base url is: https://api.botan.io/track
 
-В теле POST-запроса - json с данными события или сообщения
+You can put data to botan using POST or GET methods.
+	
+For GET method please provide token, uid, name (optional) arguments like that:
+	curl -XGET https://api.botan.io/track?token=API_KEY&uid=UID
 
-Ответ придет в json вида:
-- {"status": "accepted"} при успехе
-- {"status": "failed"} или  {"status": "bad request"} при ошибках
+For POST data please provide json document at post data. Like that:
+	curl -XPOST https://api.botan.io/track -d '{"token:" "API_KEY", "uid": "UID"}
 
-### P.S.
-Пулл-реквесты приветствуются!
+Response is a json document like that:
+	* on success: {"status": "accepted"}
+	* on failure: {"status": "failed"} or {"status": "bad request"}
