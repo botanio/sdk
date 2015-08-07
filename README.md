@@ -10,10 +10,12 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
  * Get an API key at the settings tab and save it. You will use it as a token for Botan API calls.
 
 ## SDK usage
-Or you can issue Botan API calls via the HTTP API. We also have libraries for the following programming languages:
+We have libraries for the following programming languages:
  * JavaScript
  * Python
  * Ruby
+
+ Or you can call Botan API via the HTTP (described below).
 
 
 ### Javacript example
