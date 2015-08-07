@@ -1,0 +1,20 @@
+{
+  "name": "botanio",
+  "version": "0.0.1",
+  "description": "Botan SDK",
+  "main": "botan.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/botanio/sdk.git"
+  },
+  "keywords": [
+    "botan",
+    "sdk"
+  ],
+  "author": "botan.io <info@botan.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/botanio/sdk/issues"
+  },
+  "homepage": "https://github.com/botanio/sdk#readme"
+}
