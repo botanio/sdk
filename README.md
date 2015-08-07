@@ -29,6 +29,20 @@ var botan = require('botanio')(token);
 botan.track(message, 'Start');
 ```
 
+## PHP example
+You need to put the class in a convenient place.
+```php
+private $token = 'token';
+
+public function _incomingMessage($message_json) {
+    $messageObj = json_decode($message_json, true);
+    $messageData = $messageObj['message'];
+	
+    $botan = new Botan($this->token);
+    $botan->track($messageData, 'Start');
+}
+```
+
 ## Python example
 You need to install requests library to use python botan lib.
 You can do it like this:
