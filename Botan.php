@@ -26,6 +26,9 @@ class Botan {
     private $token;
 
     function __construct($token) {
+        if (empty($token) || !is_string($token)) {
+            throw new \Exception("Token should be a string", 2);
+        }
         $this->token = $token;
     }
 
@@ -56,12 +59,12 @@ class Botan {
     public function track($message, $event_name = 'Message') {
         $uid = $message['from']['id'];
         $url = str_replace(
-            array('#TOKEN', '#UID', '#NAME'), 
-            array($this->token, $uid, $event_name), 
+            array('#TOKEN', '#UID', '#NAME'),
+            array($this->token, $uid, $event_name),
             $this->template_uri
         );
         $result = $this->request($url, $message);
-        if ($result['error']) {
+        if ($result['error'] || $result['response']['status'] !== 'accepted') {
             throw new \Exception("Error Processing Request", 1);
         }
     }
