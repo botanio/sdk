@@ -1,0 +1,13 @@
+[package]
+name = "botanio"
+description = "A telegram bot analytics system based on Yandex.Appmetrica."
+repository = "https://github.com/botanio/sdk"
+license = "MIT"
+keywords = ["telegram", "bot", "sdk"]
+version = "0.0.0"
+authors = ["Fedor Gogolev <knsd@knsd.net>"]
+
+[dependencies]
+rustc-serialize = "*"
+hyper = "*"
+url = "*"
