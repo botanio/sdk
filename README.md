@@ -10,6 +10,8 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
  * Save an API key from settings page, you will use it as a token for Botan API calls.
  * Download lib for your language, and use it as described below. Don`t forget to insert your token!
 
+Since we are only getting started, you may discover that some existing reports in AppMetriсa aren't properly working for Telegram bots, like Geography, Gender, Age, Library, Devices, Traffic sources and Network sections. We will polish that later.
+
 ## SDK usage
 We have libraries for the following languages:
  * JavaScript
