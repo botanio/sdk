@@ -1,30 +1,36 @@
-var request = require("request");
+var request = require('request');
 
-var url_template = 'https://api.botan.io/track?token=#token#&uid=#uid#&name=#name#';
+var BOTAN_URL = 'https://api.botan.io/track';
+var DEFAULT_NAME = 'Message';
 
-module.exports = function(apikey) {
-    token = apikey;
+module.exports = function (apikey) {
+    var token = apikey;
     return {
-        track: function(message, name) {
-            uid = message.from.id;
-            name = name ? name : 'Message';
-            url = url_template.replace('#token#', token).replace('#uid#', uid).replace('#name#', name);
-            //console.log(url);
+        /**
+         * @param {Object} message
+         * @param {String} [name='Message']
+         * @param {Function} [callback]
+         */
+        track: function (message, name, callback) {
+            if (typeof name === 'function') {
+                name = DEFAULT_NAME;
+                callback = name;
+            }
+
             request({
-                    url: url,
-                    method: "POST",
-                    json: message
-                }, function (error, response, body) {
-                    if (!error && response.statusCode === 200) {
-                        //console.log(body);
-                    }
-                    else {
-                        console.log("error: " + error);
-                        console.log("response.statusCode: " + response.statusCode);
-                        console.log("response.statusText: " + response.statusText);
-                    }
+                method: 'POST',
+                url: BOTAN_URL,
+                qs: {
+                    token: token,
+                    uid: message.from.id,
+                    name: name || DEFAULT_NAME
+                },
+                json: message
+            }, function (error, response, body) {
+                if (callback) {
+                    callback(error, response, body);
                 }
-            );
+            });
         }
     };
 };
