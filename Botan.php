@@ -41,7 +41,7 @@ class Botan {
         ));
         $response = curl_exec($ch);
         $error = false;
-        if (!$response){
+        if (!$response) {
             $error = true;
         }
         $responseData = json_decode($response, true);
