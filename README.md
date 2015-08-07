@@ -54,8 +54,10 @@ Base url is: https://api.botan.io/track
 You can put data to botan using POST method.
 
 Url should look like https://api.botan.io/track?token=API_KEY&uid=UID
+
 Please provide json document at post body.
 
 API response is a json document:
-	* on success: {"status": "accepted"}
-	* on failure: {"status": "failed"} or {"status": "bad request"}
+
+* on success: {"status": "accepted"}
+* on failure: {"status": "failed"} or {"status": "bad request"}
