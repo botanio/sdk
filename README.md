@@ -17,8 +17,12 @@ Or you can issue Botan API calls via the HTTP API. We also have libraries for th
 
 
 ### Javacript example
-	var botan = require('./botan.js')(token);
-    	botan.track(message, 'Start');
+Install npm: `npm install botanio`
+```js
+var botan = require('botanio')(token);
+
+botan.track(message, 'Start');
+```
 
 ### Python example
 You need to install requests library to use python botan lib.
