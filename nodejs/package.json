@@ -1,6 +1,6 @@
 {
   "name": "botanio",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Botan SDK",
   "main": "botan.js",
   "repository": {
