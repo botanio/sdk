@@ -81,6 +81,14 @@ fn main() {
 }
 ```
 
+## PHP example
+```php
+$tracker = new BotanTracker(1234567);
+$tracker->track(123, ['text' => 'Hello world!'], 'Message');
+```
+
+Where "1234567" your [Yandex.Appmetrica](https://appmetrika.yandex.com/) api token. 123 unique customer ID, for example chat_id or sender_id
+
 ## HTTP API
 The base url is: https://api.botan.io/track
 
