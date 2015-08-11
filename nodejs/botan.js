@@ -13,8 +13,8 @@ module.exports = function (apikey) {
          */
         track: function (message, name, callback) {
             if (typeof name === 'function') {
-                name = DEFAULT_NAME;
                 callback = name;
+                name = DEFAULT_NAME;
             }
 
             request({
