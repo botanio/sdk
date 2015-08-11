@@ -8,9 +8,9 @@ use hyper::{Url};
 use hyper::client::{Client, IntoUrl};
 use hyper::header::ContentType;
 use hyper::error::Error as HyperError;
+use url::ParseError as UrlError;
 use rustc_serialize::{Encodable};
 use rustc_serialize::json::{encode, decode};
-use url::ParseError as UrlError;
 
 const URL: &'static str = "https://api.botan.io/track";
 
