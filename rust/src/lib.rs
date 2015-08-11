@@ -22,8 +22,8 @@ pub struct Botan {
 
 #[derive(Debug)]
 pub enum BotanError {
-    HttpError(HyperError),
-    JsonError,
+    Http(HyperError),
+    Json,
     Failed,
     BadRequest,
     Unknown,
@@ -56,7 +56,7 @@ impl Botan {
 
         url.set_query_from_pairs(query_pairs.into_iter());
 
-        let body = try!(encode(message).map_err(|_| BotanError::JsonError));
+        let body = try!(encode(message).map_err(|_| BotanError::Json));
         let client = Client::new();
 
         let mut response_string = String::new();
@@ -64,10 +64,10 @@ impl Botan {
         .header(ContentType::json())
         .body(&body)
         .send()
-        .map_err(BotanError::HttpError)
-        .and_then(|mut resp| resp.read_to_string(&mut response_string).map_err(|err| BotanError::HttpError(HyperError::Io(err)))));
+        .map_err(BotanError::Http)
+        .and_then(|mut resp| resp.read_to_string(&mut response_string).map_err(|err| BotanError::Http(HyperError::Io(err)))));
 
-        match try!(decode::<BotanResponse>(&response_string).map_err(|_| BotanError::JsonError)).status.as_ref() {
+        match try!(decode::<BotanResponse>(&response_string).map_err(|_| BotanError::Json)).status.as_ref() {
             "accepted"      => Ok(()),
             "failed"        => Err(BotanError::Failed),
             "bad request"   => Err(BotanError::BadRequest),
