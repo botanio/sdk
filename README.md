@@ -104,7 +104,7 @@ The base url is: https://api.botan.io/track
 
 You can put data to Botan using POST method.
 
-The url should look like https://api.botan.io/track?token=API_KEY&uid=UID
+The url should look like https://api.botan.io/track?token=API_KEY&uid=UID&name=EVENT_NAME
 
 Please provide a json document as the post body.
 
