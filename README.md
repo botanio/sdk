@@ -111,9 +111,9 @@ Please provide a json document as the post body.
 API response is a json document:
 
 * on success: {"status": "accepted"}
-* on failure: {"status": "failed"} or {"status": "bad request"}
+* on failure: {"status": "failed"} or {"status": "bad request", "info": "some_additional_info_about_error"}
  
 ##Contribution
-We welcome any contributions as pull-requests!
+We are welcome any contributions as pull-requests!
 
 Feel free to write more libraries for the languages we are not supporting yet.
