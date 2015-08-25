@@ -14,13 +14,14 @@ Since we are only getting started, you may discover that some existing reports i
 
 ## SDK usage
 We have libraries for the following languages:
+ * Java
  * JavaScript
  * PHP
- * Python
  * Ruby
  * Rust
+ * Python
 
-More languages (Java, C#, etc.) are coming soon!
+More languages (Go, C#, etc.) are coming soon!
 
 Alternatively, you can use Botan API via HTTP calls (please see below).
 
