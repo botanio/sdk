@@ -22,7 +22,7 @@ We have libraries for the following languages:
  * [Ruby](#ruby)
  * [Rust](#rust)
 
-More languages (Go, C#, etc.) are coming soon!
+More languages (C++, Scala, etc.) are coming soon.
 
 Alternatively, you can use Botan API via [plain HTTP calls](#http).
 
