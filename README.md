@@ -14,6 +14,7 @@ Since we are only getting started, you may discover that some existing reports i
 
 ## SDK usage
 We have libraries for the following languages:
+ * [Go](#go)
  * [Java](#java)
  * [JavaScript](#js)
  * [PHP](#php)
