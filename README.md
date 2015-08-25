@@ -17,9 +17,9 @@ We have libraries for the following languages:
  * [Java](#java)
  * [JavaScript](#js)
  * [PHP](#php)
+ * [Python](#py)
  * [Ruby](#ruby)
  * [Rust](#rust)
- * [Python](#py)
 
 More languages (Go, C#, etc.) are coming soon!
 
