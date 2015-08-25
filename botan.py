@@ -10,11 +10,11 @@
 import requests
 import json
 
-url_template = 'https://api.botan.io/track?token=#token#&uid=#uid#&name=#name#';
+URL_TEMPLATE = 'https://api.botan.io/track?token={token}&uid={uid}&name={name}';
 
 def track(token, uid, message, name = 'Message'):
-    global url_template
-    url = url_template.replace('#token#', str(token)).replace('#uid#', str(uid)).replace('#name#', name);
+    global URL_TEMPLATE
+    url = URL_TEMPLATE.format(token=str(token), uid=str(uid), name=name)
     headers = {'Content-type': 'application/json'}
     try:
         r = requests.post(url, data=json.dumps(message), headers=headers)
