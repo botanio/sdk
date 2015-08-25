@@ -44,7 +44,7 @@ Code:
 
 	import botan
 	token = 1
-	uid = 2    
+	uid = 2
 	messageDict = {}
 	print botan.track(token, uid, messageDict, 'Search')
 
@@ -110,7 +110,43 @@ try (CloseableHttpAsyncClient client = HttpAsyncClients.createDefault()) {
 }
 ```
 
-## <a name="http">HTTP API
+## <a name="go"></a>Go example
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/botanio/sdk/go"
+)
+
+type Message struct {
+	SomeMetric    int
+	AnotherMetric int
+}
+
+func main() {
+	ch := make(chan bool) // Channel for synchronization
+
+	bot := botan.New("1111")
+	message := Message{100, 500}
+
+	// Asynchronous track example
+	bot.TrackAsync(1, message, "Search", func(ans botan.Answer, err []error) {
+		fmt.Printf("Asynchonous: %+v\n", ans)
+		ch <- true // Synchronization send
+	})
+
+	// Synchronous track example
+	ans, _ := bot.Track(1, message, "Search")
+	fmt.Printf("Synchronous: %+v\n", ans)
+
+	<-ch // Synchronization receive
+}
+```
+
+## <a name="http"></a>HTTP API
 The base url is: https://api.botan.io/track
 
 You can put data to Botan using POST method.
@@ -123,7 +159,7 @@ API response is a json document:
 
 * on success: {"status": "accepted"}
 * on failure: {"status": "failed"} or {"status": "bad request", "info": "some_additional_info_about_error"}
- 
+
 ##Contribution
 We are welcome any contributions as pull-requests!
 
