@@ -25,5 +25,5 @@ def track(token, uid, message, name='Message'):
         return False
     except requests.exceptions.RequestException as e:
         # catastrophic error
-        print e
+        print(e)
         return False
