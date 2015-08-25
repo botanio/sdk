@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <packaging>pom</packaging>
+
+    <groupId>io.botan</groupId>
+    <artifactId>sdk-parent</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <name>[botan-sdk-parent]</name>
+    <description>Aggregate model for botan projects</description>
+
+    <url>https://github.com/botanio/sdk</url>
+
+    <scm>
+        <url>git@github.com:botanio/sdk.git</url>
+        <connection>scm:git:git@github.com:botanio/sdk.git</connection>
+        <developerConnection>scm:git:git@github.com:botanio/sdk.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>ketoth.xupack</id>
+            <name>Ketoth Xupack</name>
+            <email>ketoth.xupack@gmail.com</email>
+        </developer>
+    </developers>
+
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
+
+    <parent>
+        <groupId>org.no-hope</groupId>
+        <artifactId>java-toolkit-ci</artifactId>
+        <version>0.2.2</version>
+    </parent>
+
+    <properties>
+        <jackson.version>2.6.1</jackson.version>
+        <httpasyncclient.version>4.1</httpasyncclient.version>
+        <easymock.version>3.2</easymock.version>
+        <slf4j-api.version>1.7.7</slf4j-api.version>
+    </properties>
+
+    <modules>
+        <module>sdk</module>
+    </modules>
+</project>

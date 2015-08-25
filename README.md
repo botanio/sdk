@@ -41,7 +41,7 @@ private $token = 'token';
 public function _incomingMessage($message_json) {
     $messageObj = json_decode($message_json, true);
     $messageData = $messageObj['message'];
-	
+
     $botan = new Botan($this->token);
     $botan->track($messageData, 'Start');
 }
@@ -96,6 +96,16 @@ fn main() {
 
     let botan = Botan::new(token);
     botan.track(uid, &message, name).unwrap();
+}
+```
+
+## Java example
+
+```java
+try (CloseableHttpAsyncClient client = HttpAsyncClients.createDefault()) {
+    client.start();
+    Botan botan = new Botan(client, new ObjectMapper());
+    botan.track("1111", "1", ImmutableMap.of("some_metric": 100, "another_metric": 500), "Search").get();
 }
 ```
 
