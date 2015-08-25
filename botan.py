@@ -1,18 +1,19 @@
-#----------------
-#dont forget 'pip install requests' first
-#----------------
-#usage example:
+# ----------------
+# dont forget 'pip install requests' first
+# ----------------
+# usage example:
 #
-#import botan
+# import botan
 #
-#print botan.track(1111, 1, {'text':2}, 'Search')
+# print botan.track(1111, 1, {'text':2}, 'Search')
 
 import requests
 import json
 
-URL_TEMPLATE = 'https://api.botan.io/track?token={token}&uid={uid}&name={name}';
+URL_TEMPLATE = 'https://api.botan.io/track?token={token}&uid={uid}&name={name}'
 
-def track(token, uid, message, name = 'Message'):
+
+def track(token, uid, message, name='Message'):
     global URL_TEMPLATE
     url = URL_TEMPLATE.format(token=str(token), uid=str(uid), name=name)
     headers = {'Content-type': 'application/json'}
