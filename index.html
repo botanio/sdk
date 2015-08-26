@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Botan.io by botanio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Botan.io</h1>
+      <h2 class="project-tagline">Advanced analytics for your Telegram bot</h2>
+      <a href="https://github.com/botanio/sdk" class="btn">View on GitHub</a>
+      <a href="https://github.com/botanio/sdk/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/botanio/sdk/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="botan-sdk" class="anchor" href="#botan-sdk" aria-hidden="true"><span class="octicon octicon-link"></span></a>Botan SDK</h1>
+
+<p><a href="http://botan.io">Botan</a> is a telegram bot analytics system based on <a href="http://appmetrica.yandex.com/">Yandex.Appmetrica</a>.
+In this document you can find how to setup Yandex.Appmetrica account, as well as examples of Botan SDK usage.</p>
+
+<h2>
+<a id="creating-an-account" class="anchor" href="#creating-an-account" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating an account</h2>
+
+<ul>
+<li>Register at <a href="http://appmetrica.yandex.com/">http://appmetrica.yandex.com/</a>
+</li>
+<li>After registration you will be prompted to create Application. Please use @YourBotName as a name.</li>
+<li>Save an API key from settings page, you will use it as a token for Botan API calls.</li>
+<li>Download lib for your language, and use it as described below. Don`t forget to insert your token!</li>
+</ul>
+
+<p>Since we are only getting started, you may discover that some existing reports in AppMetriсa aren't properly working for Telegram bots, like Geography, Gender, Age, Library, Devices, Traffic sources and Network sections. We will polish that later.</p>
+
+<h2>
+<a id="sdk-usage" class="anchor" href="#sdk-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>SDK usage</h2>
+
+<p>We have libraries for the following languages:</p>
+
+<ul>
+<li><a href="#go">Go</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#js">JavaScript</a></li>
+<li><a href="#php">PHP</a></li>
+<li><a href="#py">Python</a></li>
+<li><a href="#ruby">Ruby</a></li>
+<li><a href="#rust">Rust</a></li>
+</ul>
+
+<p>More languages (C++, Scala, etc.) are coming soon.</p>
+
+<p>Alternatively, you can use Botan API via <a href="#http">plain HTTP calls</a>.</p>
+
+<h2>
+<a id="javascript-example" class="anchor" href="#javascript-example" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="js"></a>JavaScript example</h2>
+
+<p>Install npm: <code>npm install botanio</code></p>
+
+<div class="highlight highlight-js"><pre><span class="pl-k">var</span> botan <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>botanio<span class="pl-pds">'</span></span>)(token);
+
+botan.<span class="pl-c1">track</span>(message, <span class="pl-s"><span class="pl-pds">'</span>Start<span class="pl-pds">'</span></span>);</pre></div>
+
+<h2>
+<a id="python-example" class="anchor" href="#python-example" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="py"></a>Python example</h2>
+
+<p>You need to install requests library to use python botan lib.
+You can do it with</p>
+
+<pre><code>pip install requests
+</code></pre>
+
+<p>Code:</p>
+
+<pre><code>import botan
+token = 1
+uid = 2
+messageDict = {}
+print botan.track(token, uid, messageDict, 'Search')
+</code></pre>
+
+<p>It's necessary to pass <code>uid</code> (user id you get from Telegram) into python lib calls.</p>
+
+<h2>
+<a id="php-example" class="anchor" href="#php-example" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="php"></a>PHP example</h2>
+
+<p>You need to put the class in a convenient place.</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">private</span> <span class="pl-smi">$token</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>token<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">_incomingMessage</span>(<span class="pl-smi">$message_json</span>) {</span>
+<span class="pl-s1">    <span class="pl-smi">$messageObj</span> <span class="pl-k">=</span> <span class="pl-c1">json_decode</span>(<span class="pl-smi">$message_json</span>, <span class="pl-c1">true</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$messageData</span> <span class="pl-k">=</span> <span class="pl-smi">$messageObj</span>[<span class="pl-s"><span class="pl-pds">'</span>message<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-smi">$botan</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Botan</span>(<span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">token</span>);</span>
+<span class="pl-s1">    <span class="pl-smi">$botan</span><span class="pl-k">-&gt;</span>track(<span class="pl-smi">$messageData</span>, <span class="pl-s"><span class="pl-pds">'</span>Start<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">}</span></pre></div>
+
+<h2>
+<a id="ruby-example" class="anchor" href="#ruby-example" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="ruby"></a>Ruby example</h2>
+
+<p><code>uid</code> is a user id you get from Telegram.</p>
+
+<pre><code>require_relative 'botan'
+token = 1111
+uid = 1
+message = { text: 'text' }
+puts Botan.track(token, uid, message, 'Search')
+</code></pre>
+
+<h2>
+<a id="rust-example" class="anchor" href="#rust-example" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="rust"></a>Rust example</h2>
+
+<div class="highlight highlight-rust"><pre>
+<span class="pl-k">extern crate</span> <span class="pl-c1">rustc_serialize</span><span class="pl-k">;</span>
+
+<span class="pl-k">extern crate</span> <span class="pl-c1">botanio</span><span class="pl-k">;</span>
+
+<span class="pl-k">use</span> botanio::{Botan}<span class="pl-k">;</span>
+
+<span class="pl-c">#[derive(Debug, RustcEncodable)]</span>
+<span class="pl-k">struct</span> Message {
+    some_metric<span class="pl-k">:</span> <span class="pl-k">u32</span><span class="pl-k">,</span>
+    another_metric<span class="pl-k">:</span> <span class="pl-k">u32</span><span class="pl-k">,</span>
+}
+
+<span class="pl-k">fn</span> <span class="pl-en">main</span>() {
+    <span class="pl-k">let</span> <span class="pl-smi">token</span> <span class="pl-k">=</span> <span class="pl-s">"1111"</span><span class="pl-k">;</span>
+    <span class="pl-k">let</span> <span class="pl-smi">uid</span> <span class="pl-k">=</span> <span class="pl-c1">1</span><span class="pl-k">;</span>
+    <span class="pl-k">let</span> <span class="pl-smi">name</span> <span class="pl-k">=</span> <span class="pl-s">"Search"</span><span class="pl-k">;</span>
+    <span class="pl-k">let</span> <span class="pl-smi">message</span> <span class="pl-k">=</span> Message {some_metric<span class="pl-k">:</span> <span class="pl-c1">100</span><span class="pl-k">,</span> another_metric<span class="pl-k">:</span> <span class="pl-c1">500</span>}<span class="pl-k">;</span>
+
+    <span class="pl-k">let</span> <span class="pl-smi">botan</span> <span class="pl-k">=</span> Botan::<span class="pl-c1">new</span>(token)<span class="pl-k">;</span>
+    botan<span class="pl-k">.</span><span class="pl-c1">track</span>(uid<span class="pl-k">,</span> <span class="pl-k">&amp;</span>message<span class="pl-k">,</span> name)<span class="pl-k">.</span><span class="pl-c1">unwrap</span>()<span class="pl-k">;</span>
+}</pre></div>
+
+<h2>
+<a id="java-example" class="anchor" href="#java-example" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="java"></a>Java example</h2>
+
+<div class="highlight highlight-java"><pre><span class="pl-k">try</span> (<span class="pl-smi">CloseableHttpAsyncClient</span> client <span class="pl-k">=</span> <span class="pl-smi">HttpAsyncClients</span><span class="pl-k">.</span>createDefault()) {
+    client<span class="pl-k">.</span>start();
+    <span class="pl-smi">Botan</span> botan <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Botan</span>(client, <span class="pl-k">new</span> <span class="pl-smi">ObjectMapper</span>());
+    botan<span class="pl-k">.</span>track(<span class="pl-s"><span class="pl-pds">"</span>1111<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>, <span class="pl-smi">ImmutableMap</span><span class="pl-k">.</span>of(<span class="pl-s"><span class="pl-pds">"</span>some_metric<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">100</span>, <span class="pl-s"><span class="pl-pds">"</span>another_metric<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">500</span>), <span class="pl-s"><span class="pl-pds">"</span>Search<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>get();
+}</pre></div>
+
+<h2>
+<a id="go-example" class="anchor" href="#go-example" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="go"></a>Go example</h2>
+
+<div class="highlight highlight-go"><pre><span class="pl-k">package</span> main
+
+<span class="pl-k">import</span> (
+    <span class="pl-s"><span class="pl-pds">"</span>fmt<span class="pl-pds">"</span></span>
+
+    <span class="pl-s"><span class="pl-pds">"</span>github.com/botanio/sdk/go<span class="pl-pds">"</span></span>
+)
+
+<span class="pl-k">type</span> <span class="pl-v">Message</span> <span class="pl-k">struct</span> {
+    <span class="pl-v">SomeMetric</span>    <span class="pl-k">int</span>
+    <span class="pl-v">AnotherMetric</span> <span class="pl-k">int</span>
+}
+
+<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+    <span class="pl-smi">ch</span> <span class="pl-k">:=</span> <span class="pl-c1">make</span>(<span class="pl-k">chan</span> <span class="pl-k">bool</span>) <span class="pl-c">// Channel for synchronization</span>
+
+    <span class="pl-smi">bot</span> <span class="pl-k">:=</span> botan.<span class="pl-c1">New</span>(<span class="pl-s"><span class="pl-pds">"</span>1111<span class="pl-pds">"</span></span>)
+    <span class="pl-smi">message</span> <span class="pl-k">:=</span> Message{<span class="pl-c1">100</span>, <span class="pl-c1">500</span>}
+
+    <span class="pl-c">// Asynchronous track example</span>
+    bot.<span class="pl-c1">TrackAsync</span>(<span class="pl-c1">1</span>, message, <span class="pl-s"><span class="pl-pds">"</span>Search<span class="pl-pds">"</span></span>, <span class="pl-c1">func</span>(ans botan.<span class="pl-smi">Answer</span>, err []<span class="pl-k">error</span>) {
+        fmt.<span class="pl-c1">Printf</span>(<span class="pl-s"><span class="pl-pds">"</span>Asynchonous: <span class="pl-c1">%+v</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, ans)
+        ch <span class="pl-k">&lt;-</span> <span class="pl-c1">true</span> <span class="pl-c">// Synchronization send</span>
+    })
+
+    <span class="pl-c">// Synchronous track example</span>
+    <span class="pl-smi">ans</span>, <span class="pl-smi">_</span> <span class="pl-k">:=</span> bot.<span class="pl-c1">Track</span>(<span class="pl-c1">1</span>, message, <span class="pl-s"><span class="pl-pds">"</span>Search<span class="pl-pds">"</span></span>)
+    fmt.<span class="pl-c1">Printf</span>(<span class="pl-s"><span class="pl-pds">"</span>Synchronous: <span class="pl-c1">%+v</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, ans)
+
+    <span class="pl-k">&lt;-</span>ch <span class="pl-c">// Synchronization receive</span>
+}</pre></div>
+
+<h2>
+<a id="http-api" class="anchor" href="#http-api" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="http"></a>HTTP API</h2>
+
+<p>The base url is: <a href="https://api.botan.io/track">https://api.botan.io/track</a></p>
+
+<p>You can put data to Botan using POST method.</p>
+
+<p>The url should look like <a href="https://api.botan.io/track?token=API_KEY&amp;uid=UID&amp;name=EVENT_NAME">https://api.botan.io/track?token=API_KEY&amp;uid=UID&amp;name=EVENT_NAME</a></p>
+
+<p>Please provide a json document as the post body.</p>
+
+<p>API response is a json document:</p>
+
+<ul>
+<li>on success: {"status": "accepted"}</li>
+<li>on failure: {"status": "failed"} or {"status": "bad request", "info": "some_additional_info_about_error"}</li>
+</ul>
+
+<h2>
+<a id="contribution" class="anchor" href="#contribution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribution</h2>
+
+<p>We are welcome any contributions as pull-requests!</p>
+
+<p>Feel free to write more libraries for the languages we are not supporting yet.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/botanio/sdk">Botan.io</a> is maintained by <a href="https://github.com/botanio">botanio</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
