@@ -43,7 +43,7 @@ class Botan {
         $uid = $message['from']['id'];
         $url = str_replace(
             ['#TOKEN', '#UID', '#NAME'],
-            [$this->token, $uid, $event_name],
+            [urlencode($this->token), urlencode($uid), urlencode($event_name)],
             $this->template_uri
         );
         $result = $this->request($url, $message);
