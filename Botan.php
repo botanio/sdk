@@ -43,50 +43,25 @@ class Botan {
         $uid = $message['from']['id'];
         $url = str_replace(
             ['#TOKEN', '#UID', '#NAME'],
-            [$this->token, $uid, $event_name],
+            [$this->token, $uid, urlencode($event_name)],
             $this->template_uri
         );
         $result = $this->request($url, $message);
-        if ($result['error'] || $result['response']['status'] !== 'accepted') {
+        if ($result['status'] !== 'accepted') {
             throw new \Exception('Error Processing Request', 1);
         }
     }
+    
+    function getHTTPResponseCode($headers){
+        $matches = [];
+        $res = preg_match_all('/[\w]+\/\d+\.\d+ (\d+) [\w]+/', $headers[0], $matches);
+        if ($res < 1)
+        	throw new \Exception('Incorrect response headers');
+        $code = intval($matches[1][0]);
+        return $code;
+    }
 
     protected function request($url, $body) {
-        $curlInstalled = function_exists('curl_version');
-        $response = null;
-        if ($curlInstalled) {
-            $response = $this->curlRequest($url, $body);
-        } else {
-            $response = $this->streamContextRequest($url, $body);
-        }
-
-        $error = empty($response);
-        $responseData = json_decode($response, true);
-
-        return [
-            'error' => $error,
-            'response' => $responseData
-        ];
-    }
-
-    private function curlRequest($url, $body) {
-        $ch = curl_init($url);
-        curl_setopt_array($ch, [
-            CURLOPT_POST => true,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER => [
-                'Content-Type: application/json'
-            ],
-            CURLOPT_POSTFIELDS => json_encode($body)
-        ]);
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        return $response;
-    }
-
-    private function streamContextRequest($url, $body) {
         $options = [
             'http' => [
                 'header'  => 'Content-Type: application/json',
@@ -94,9 +69,21 @@ class Botan {
                 'content' => json_encode($body)
             ]
         ];
+        
         $context = stream_context_create($options);
         $response = file_get_contents($url, false, $context);
-
-        return $response;
+        if ($response === false)
+            throw new \Exception('Error Processing Request', 1);
+        
+        $HTTPCode = $this->getHTTPResponseCode($http_response_header);
+        if ($HTTPCode !== 200)
+            throw new \Exception("Bad HTTP responce code: $HTTPCode".print_r($http_response_header, true));
+            
+        $responseData = json_decode($response, true);
+        if ($responseData === false)
+            throw new \Exception('JSON decode error');
+        
+        return $responseData;
     }
+    
 }
