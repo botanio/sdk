@@ -53,13 +53,13 @@ impl Botan {
         Ok(self)
     }
 
-    pub fn track<M: Encodable>(&self, uid: u32, message: &M, name: &str) -> Result<(), BotanError> {
-        let request = try!(self.prepare_request(uid, message, name));
+    pub fn track<M: Encodable>(&self, uid: u32, name: &str, message: &M) -> Result<(), BotanError> {
+        let request = try!(self.prepare_request(uid, name, message));
         let response = try!(Self::make_request(request));
         Self::treat_response(response)
     }
 
-    fn prepare_request<M: Encodable>(&self, uid: u32, message: &M, name: &str) -> Result<BotanRequest, BotanError> {
+    fn prepare_request<M: Encodable>(&self, uid: u32, name: &str, message: &M) -> Result<BotanRequest, BotanError> {
         let mut url = self.url.clone();
         let s_uid = &uid.to_string();
         let query_pairs: [(&str, &str); 3] = [
