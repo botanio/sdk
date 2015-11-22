@@ -14,6 +14,7 @@
 extern crate hyper;
 extern crate url;
 extern crate rustc_serialize;
+#[macro_use] extern crate quick_error;
 
 use std::io::{Read};
 
@@ -34,21 +35,25 @@ pub struct Botan {
     token: String,
 }
 
-#[derive(Debug)]
-/// This error could occure during tracking
-pub enum BotanError {
-    /// Underlying http error, dns error for example
-    Http(HyperError),
-    /// Impossible to encode a message
-    JsonEncoding,
-    /// Impossible to decode answer from the server which provided in field
-    JsonDecoding(String),
-    /// Server is unable to process request
-    Failed,
-    /// Malformed request, additional info is provided in field
-    BadRequest(String),
-    /// Invalid status, or "info" field with "accepted" or "failed" status
-    Unknown,
+quick_error! {
+    #[derive(Debug)]
+    /// This error could occure during tracking
+    pub enum BotanError {
+        /// Underlying http error, dns error for example
+        Http(err: HyperError) {
+            from()
+        }
+        /// Impossible to encode a message
+        JsonEncoding
+        /// Impossible to decode response from the server which provided in field
+        JsonDecoding(response: String)
+        /// Server is unable to process request
+        Failed
+        /// Malformed request, additional info is provided in field
+        BadRequest(info: String)
+        /// Invalid status, or "info" field with "accepted" or "failed" status
+        Unknown
+    }
 }
 
 #[derive(Debug, RustcDecodable)]
