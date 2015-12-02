@@ -29,7 +29,7 @@ use rustc_serialize::json::{encode, decode};
 const URL: &'static str = "https://api.botan.io/track";
 
 /// An entry point to the botan.io API
-#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Botan {
     url: Url,
     token: String,
