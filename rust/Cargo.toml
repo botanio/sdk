@@ -4,10 +4,11 @@ description = "A telegram bot analytics system based on Yandex.Appmetrica."
 repository = "https://github.com/botanio/sdk"
 license = "MIT"
 keywords = ["telegram", "bot", "sdk"]
-version = "0.0.0"
+version = "0.1.0"
 authors = ["Fedor Gogolev <knsd@knsd.net>"]
 
 [dependencies]
-rustc-serialize = "*"
-hyper = "*"
-url = "*"
+rustc-serialize = "0.3.16"
+hyper = "0.6.16"
+url = "0.2"  # Same as hyper
+quick-error = "0.1.4"

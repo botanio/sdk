@@ -17,5 +17,5 @@ fn main() {
     let message = Message {some_metric: 100, another_metric: 500};
 
     let botan = Botan::new(token);
-    botan.track(uid, &message, name).unwrap();
+    botan.track(uid, name, &message).unwrap();
 }
