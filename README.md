@@ -22,10 +22,11 @@ We have libraries for the following languages:
  * [Ruby](#ruby)
  * [Rust](#rust)
 
-More languages are coming soon.
-
 Alternatively, you can use Botan API via [plain HTTP calls](#http).
 
+In case your preferred language is missed, you can make a contribution. It's easy — library usually contains 30 lines of code.
+
+Also, pay attention to ["what data to put into tracking data"](#tracking_data) section.
 
 ## <a name="js"></a>JavaScript example
 Install npm: `npm install botanio`
@@ -160,6 +161,9 @@ API response is a json document:
 
 * on success: {"status": "accepted"}
 * on failure: {"status": "failed"} or {"status": "bad request", "info": "some_additional_info_about_error"}
+
+## <a name="tracking_data"></a>What to put into tracking data
+
 
 ##Contribution
 We are welcome any contributions as pull-requests!
