@@ -163,12 +163,18 @@ API response is a json document:
 * on failure: {"status": "failed"} or {"status": "bad request", "info": "some_additional_info_about_error"}
 
 ## <a name="tracking_data"></a>What to put into tracking data
-Basic integration looks like this:
+###Basic integration
 ```python
-botan.track(<botan_token>, <user_who_wrote_to_bot>, <user_message_in_json_format>, <name_of_command>)
-<user_message_in_json_format> - whole message got from telegram. For python-telegram-bot it could be in such way: message.to_dict()
-<name_of_command> - we recommend to put here not just message text, but command. Example: user wrote '/search Californiacation', put to <name_of_command> 'Search'. This will help you to aggregate type of user's input and get such report:
+botan.track(<botan_token>, <user_who_wrote_to_bot>, <user_message_in_json_format>, <command_name>)
 ```
+* **command_name** - we recommend to put here not just message text, but command. Example: user wrote '/search californication', put to **command_name** 'Search'. This will help you to aggregate type of user's input and get such report:
+![Result of basic usage of botan](docs/basic_usage.png)
+* **user_message_in_json_format** - whole message got from Telegram. For example, using python-telegram-bot you can do it in such way: message.to_dict(). Passing whole message, you will be able to see nice data like number of group chats among all chats:
+![Group and private chats amount](docs/chat_type.png)
+Also you will be able to get userids who performed some particular action (through segmentation) or your most active users and contact them:
+![Most active users who did particular events](docs/segment_user_ids2.png)
+
+
 
 
 
