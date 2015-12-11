@@ -179,8 +179,9 @@ Also you will be able to get userids who performed some particular action (throu
 Actually, 70% benefit from analytics usage lies in sending right events with right data inside.
 Here is some ways of sending events, which we use. Feel free to contribute your ways or improve existing ones.
 
-* That's how you can see what command users execute after which:
-```python
+#####Commands order
+That's how you can see what command users execute after which: 
+```python 
 botan.track(<botan_token>, <user_who_wrote_to_bot>, {last_command: current_command}, "command_order")
 ```
 Also you can send not pairs, but triples of commands:
@@ -189,8 +190,8 @@ botan.track(<botan_token>, <user_who_wrote_to_bot>, {before_last_command: {last_
 ```
 Using this, we can see, for example, what commands users execute after /start:
 ![Commands after start](docs/command_order.png)
-
-* Here is how you can tag every user with time cohort based on what was his first day at your service. Later you can use to see how your bot's performance has changed over time:
+#####Date cohorts
+Here is how you can tag every user with time cohort based on what was his first day at your service. Later you can use to see how your bot's performance has changed over time:
 ```python
 if this_is_first_occurence_of_user:
     botan.track(<botan_token>, 
