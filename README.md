@@ -27,6 +27,7 @@ Alternatively, you can use Botan API via [plain HTTP calls](#http).
 In case your preferred language is missed, you can make a contribution. It's easy — library usually contains 30 lines of code.
 
 Also, pay attention to ["what data to put into tracking data"](#tracking_data) section.
+90% benefit from analytics usage lies in right integration;)
 
 ## <a name="js"></a>JavaScript example
 Install npm: `npm install botanio`
@@ -174,8 +175,33 @@ botan.track(<botan_token>, <user_who_wrote_to_bot>, <user_message_in_json_format
 Also you will be able to get userids who performed some particular action (through segmentation) or your most active users and contact them:
 ![Most active users who did particular events](docs/segment_user_ids2.png)
 
+###Advanced integration
+Actually, 70% benefit from analytics usage lies in sending right events with right data inside.
+Here is some ways of sending events, which we use. Feel free to contribute your ways or improve existing ones.
 
+* That's how you can see what command users execute after which:
+```python
+botan.track(<botan_token>, <user_who_wrote_to_bot>, {last_command: current_command}, "command_order")
+```
+Also you can send not pairs, but triples of commands:
+```python
+botan.track(<botan_token>, <user_who_wrote_to_bot>, {before_last_command: {last_command: current_command}}, "command_order")
+```
+Using this, we can see, for example, what commands users execute after /start:
+![Commands after start](docs/command_order.png)
 
+* Here is how you can tag every user with time cohort based on what was his first day at your service. Later you can use to see how your bot's performance has changed over time:
+```python
+if this_is_first_occurence_of_user:
+    botan.track(<botan_token>, 
+                <user_who_wrote_to_bot>,
+                {
+                        'daily': message.date.strftime('%Y-%m-%d'),
+                        'weekly': (message.date - datetime.timedelta(message.date.weekday())).strftime('%Y-%m-%d'),
+                        'monthly': message.date.strftime('%Y-%m')
+                },
+                'cohorts')
+```
 
 
 ##Contribution
