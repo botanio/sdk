@@ -163,6 +163,13 @@ API response is a json document:
 * on failure: {"status": "failed"} or {"status": "bad request", "info": "some_additional_info_about_error"}
 
 ## <a name="tracking_data"></a>What to put into tracking data
+Basic integration looks like this:
+```python
+botan.track(<botan_token>, <user_who_wrote_to_bot>, <user_message_in_json_format>, <name_of_command>)
+<user_message_in_json_format> - whole message got from telegram. For python-telegram-bot it could be in such way: message.to_dict()
+<name_of_command> - we recommend to put here not just message text, but command. Example: user wrote '/search Californiacation', put to <name_of_command> 'Search'. This will help you to aggregate type of user's input and get such report:
+```
+
 
 
 ##Contribution
