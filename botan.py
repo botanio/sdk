@@ -11,10 +11,10 @@ import requests
 import json
 
 URL_TEMPLATE = 'https://api.botan.io/track?token={token}&uid={uid}&name={name}'
+SHORTENER_URL = 'https://api.botan.io/s/'
 
 
 def track(token, uid, message, name='Message'):
-    global URL_TEMPLATE
     url = URL_TEMPLATE.format(token=str(token), uid=str(uid), name=name)
     headers = {'Content-type': 'application/json'}
     try:
@@ -27,3 +27,17 @@ def track(token, uid, message, name='Message'):
         # catastrophic error
         print(e)
         return False
+
+
+def shorten_url(url, botan_token, user_id):
+    """
+    Shorten URL for specified user of a bot
+    """
+    try:
+        return requests.get(SHORTENER_URL, {
+            'token': botan_token,
+            'url': url,
+            'user_ids': str(user_id),
+        }).text
+    except:
+        return url
