@@ -186,9 +186,9 @@ Send GET request to
 
 https://api.botan.io/s/?token={token}&url={original_url}&user_ids={user_id}
 
-You can find short_url in plain-text response (in case code was 200). Other than 200 code means error.
+You get shortened url in a plain-text response (in case the response code was 200). Codes other than 200 mean that an error occurred.
 
-Also, in case of group chats you can add several user_ids: &user_ids={user_id_1},{user_id_2},{user_id_3}, but currently this data will not be used (because we don't know which particular user_id clicked link).
+Also, in case of group chats you can add several user_ids: &user_ids={user_id_1},{user_id_2},{user_id_3}, but currently this data will not be used (because we don't know which particular user clicked link).
 
 ## <a name="tracking_data"></a>What to put into tracking data
 ###Basic integration
@@ -234,13 +234,13 @@ if this_is_first_occurence_of_user:
 ## <a name="url_shorten"></a>URL shortening
 
 ###How it works
-You create unique link for each pair (user, link). When user clicks link, Botan remembers user agent, IP address and other stuff. Such info is being sticked to particular user id. After that you'll be able to see statics and made segmentation by geography, languages, devices, operating systems.
+You create unique short link for each pair (user, link). When user clicks the link, Botan stores his user agent, IP address and other stuff. After that you'll be able to use user segmentation by geography, language, device and operating system (and see corresponding statistics).
 
 ###What url to shorten
 We suggest you to shorten every url that you send to user. Most often case is sending "please rate us" link — almost every bot asks for rating.
 
 ###What you will get
-Through web interface you will get couple of useful things:
+You'll get couple of useful things in the web interface:
 
 Countries and regions/cities
 ![Countries and regions/cities](docs/geography.png)
@@ -255,7 +255,7 @@ Locales
 ![Locales](docs/locales.png)
 
 ###How to use
-Here you can find examples for [Python](#py), [PHP](#php). In case of other language, feel free to add support and examples for your preffered languages (here is [HTTP spec for shortener](#http_shorten) ).
+Here you can find examples for [Python](#py), [PHP](#php). Feel free to make pull requests with wrappers for other languages (here's [HTTP spec for the shortener](#http_shorten)).
 
 ##Contribution
 We are welcome any contributions as pull-requests!
