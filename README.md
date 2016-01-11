@@ -3,6 +3,9 @@
 [Botan](http://botan.io) is a telegram bot analytics system based on [Yandex.Appmetrica](http://appmetrica.yandex.com/).
 In this document you can find how to setup Yandex.Appmetrica account, as well as examples of Botan SDK usage.
 
+Botan has 2 main use cases:
+ * **Send to Botan info about every message sent by user** and get info like DAU, MAU, Retention, Commands and more complicated staff (read [what data to put into tracking data](#tracking_data) section).
+ * **Shorten links you send to users** and get info about geography, languages, devices, operation systems of your users (read [URL shortening](#url_shorten) section). 
 
 ## Creating an account
  * Go to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub
@@ -42,14 +45,18 @@ You can do it with
 	pip install requests
 
 Code:
-
+```python
 	import botan
-	token = 1
-	uid = 2
-	messageDict = {}
-	print botan.track(token, uid, messageDict, 'Search')
 
-It's necessary to pass `uid` (user id you get from Telegram) into python lib calls.
+	botan_token = '.........' # Token got from @botaniobot
+	uid = message.from_user
+	message_dict = message.to_dict()
+	event_name = update.message.text
+	print botan.track(botan_token, uid, message_dict, event_name)
+	
+	short_url = botan.shorten_url(original_url, botan_token, uid)
+	# now send short_url to user instead of original_url, and get geography, OS, Device of user
+```
 
 ## <a name="php"></a>PHP example
 You need to put the class in a convenient place.
@@ -62,7 +69,16 @@ public function _incomingMessage($message_json) {
 
     $botan = new Botan($this->token);
     $botan->track($messageData, 'Start');
+    
+    ...
+    
+    $original_url = ...
+    $uid = $message['from']['id']
+    $short_url = $botan->shortenUrl($url, $uid)
+    // now send short_url to user instead of original_url, and get geography, OS, Device of user
 }
+
+
 ```
 
 ## <a name="ruby"></a>Ruby example
@@ -201,6 +217,13 @@ if this_is_first_occurence_of_user:
                 },
                 'cohorts')
 ```
+
+## <a name="url_shorten"></a>URL shortening
+###How it works
+You create unique link for each pair (user, link). When user clicks link, Botan remembers hers user agent, IP address and other stuff. Such info is being sticked to particular user id. After that you'll be able to see statics and made segmentation by geography, languages, devices, operation systems.
+###What url to shorten
+We suggest you to shorten every url that you send to user. Most often case is sending rate request in store request — almost every bot asks for rating.
+###What you will get
 
 
 ##Contribution
