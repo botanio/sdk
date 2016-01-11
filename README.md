@@ -150,7 +150,7 @@ func main() {
 ## <a name="http"></a>HTTP API
 The base url is: https://api.botan.io/track
 
-You can put data to Botan using POST method.
+You should put data to Botan using POST method.
 
 The url should look like https://api.botan.io/track?token=BOTAN_TOKEN&uid=UID&name=EVENT_NAME
 
