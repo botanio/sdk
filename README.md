@@ -164,6 +164,7 @@ func main() {
 ```
 
 ## <a name="http"></a>HTTP API
+### <a name="http_track"></a>Track message
 The base url is: https://api.botan.io/track
 
 You should put data to Botan using POST method.
@@ -176,6 +177,15 @@ API response is a json document:
 
 * on success: {"status": "accepted"}
 * on failure: {"status": "failed"} or {"status": "bad request", "info": "some_additional_info_about_error"}
+
+### <a name="http_shorten"></a>Shorten url
+Send GET request to
+
+https://api.botan.io/s/token={token}&url={original_url}&user_ids={user_id}
+
+You can find short_url in plain-text response (in case code was 200). Other than 200 code means error.
+
+Also, in case of group chats you can add several user_ids: &user_ids={user_id_1}&user_ids={user_id_2}&user_ids={user_id_3}, but currently this data will not be used (because we don't know which particular user_id clicked link).
 
 ## <a name="tracking_data"></a>What to put into tracking data
 ###Basic integration
@@ -241,6 +251,8 @@ Devices
 Locales
 ![Locales](docs/locales.png)
 
+###How to use
+Here you can find examples for [Python](#py), [PHP](#php). In case of other language, feel free to add support and examples for your preffered languages (here is [HTTP spec for shortener](#http_shorten) ).
 
 ##Contribution
 We are welcome any contributions as pull-requests!
