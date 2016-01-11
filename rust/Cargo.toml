@@ -2,9 +2,9 @@
 name = "botanio"
 description = "A telegram bot analytics system based on Yandex.Appmetrica."
 repository = "https://github.com/botanio/sdk"
-license = "MIT"
+license = "MIT/Apache-2.0"
 keywords = ["telegram", "bot", "sdk"]
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Fedor Gogolev <knsd@knsd.net>"]
 
 [dependencies]
