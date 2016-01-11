@@ -188,7 +188,7 @@ https://api.botan.io/s/token={token}&url={original_url}&user_ids={user_id}
 
 You can find short_url in plain-text response (in case code was 200). Other than 200 code means error.
 
-Also, in case of group chats you can add several user_ids: &user_ids={user_id_1}&user_ids={user_id_2}&user_ids={user_id_3}, but currently this data will not be used (because we don't know which particular user_id clicked link).
+Also, in case of group chats you can add several user_ids: &user_ids={user_id_1},{user_id_2},{user_id_3}, but currently this data will not be used (because we don't know which particular user_id clicked link).
 
 ## <a name="tracking_data"></a>What to put into tracking data
 ###Basic integration
