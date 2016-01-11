@@ -54,6 +54,9 @@ Code:
 	event_name = update.message.text
 	print botan.track(botan_token, uid, message_dict, event_name)
 	
+	.....
+	
+	original_url = ... # some url you want to send to user
 	short_url = botan.shorten_url(original_url, botan_token, uid)
 	# now send short_url to user instead of original_url, and get geography, OS, Device of user
 ```
