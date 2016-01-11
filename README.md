@@ -231,10 +231,10 @@ if this_is_first_occurence_of_user:
 ## <a name="url_shorten"></a>URL shortening
 
 ###How it works
-You create unique link for each pair (user, link). When user clicks link, Botan remembers hers user agent, IP address and other stuff. Such info is being sticked to particular user id. After that you'll be able to see statics and made segmentation by geography, languages, devices, operation systems.
+You create unique link for each pair (user, link). When user clicks link, Botan remembers user agent, IP address and other stuff. Such info is being sticked to particular user id. After that you'll be able to see statics and made segmentation by geography, languages, devices, operation systems.
 
 ###What url to shorten
-We suggest you to shorten every url that you send to user. Most often case is sending rate request in store request — almost every bot asks for rating.
+We suggest you to shorten every url that you send to user. Most often case is sending "please rate us" link — almost every bot asks for rating.
 
 ###What you will get
 Through web interface you will get couple of useful things:
