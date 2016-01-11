@@ -5,7 +5,7 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
 
 Botan has 2 main use cases:
  * **Send to Botan info about every message sent by user** and get info like DAU, MAU, Retention, Commands and more complicated staff (read [what data to put into tracking data](#tracking_data) section).
- * **Shorten links you send to users** and get info about geography, languages, devices, operation systems of your users (read [URL shortening](#url_shorten) section). 
+ * **Shorten links you send to users** and get info about geography, languages, devices, operating systems of your users (read [URL shortening](#url_shorten) section). 
 
 ## Creating an account
  * Go to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub
@@ -234,7 +234,7 @@ if this_is_first_occurence_of_user:
 ## <a name="url_shorten"></a>URL shortening
 
 ###How it works
-You create unique link for each pair (user, link). When user clicks link, Botan remembers user agent, IP address and other stuff. Such info is being sticked to particular user id. After that you'll be able to see statics and made segmentation by geography, languages, devices, operation systems.
+You create unique link for each pair (user, link). When user clicks link, Botan remembers user agent, IP address and other stuff. Such info is being sticked to particular user id. After that you'll be able to see statics and made segmentation by geography, languages, devices, operating systems.
 
 ###What url to shorten
 We suggest you to shorten every url that you send to user. Most often case is sending "please rate us" link — almost every bot asks for rating.
@@ -245,8 +245,8 @@ Through web interface you will get couple of useful things:
 Countries and regions/cities
 ![Countries and regions/cities](docs/geography.png)
 
-Operation systems
-![Operation systems](docs/oses.png)
+Operating systems
+![Operating systems](docs/oses.png)
 
 Devices
 ![Devices](docs/devices.png)
