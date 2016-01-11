@@ -184,7 +184,7 @@ API response is a json document:
 ### <a name="http_shorten"></a>Shorten url
 Send GET request to
 
-https://api.botan.io/s/token={token}&url={original_url}&user_ids={user_id}
+https://api.botan.io/s/?token={token}&url={original_url}&user_ids={user_id}
 
 You can find short_url in plain-text response (in case code was 200). Other than 200 code means error.
 
