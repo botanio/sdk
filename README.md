@@ -5,7 +5,7 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
 
 Botan has 2 main use cases:
  * **Send to Botan info about every message sent by user** and get info like DAU, MAU, Retention, Commands and more complicated staff (read [what data to put into tracking data](#tracking_data) section).
- * **Shorten links you send to users** and get info about geography, languages, devices, operating systems of your users (read [URL shortening](#url_shorten) section). 
+ * **Get users' profiles by shortening links you send to users** — geography, languages, devices, operating systems of your users (read [Get users' profiles by shortening links](#url_shorten) section). 
 
 ## Creating an account
  * Go to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub
@@ -231,7 +231,7 @@ if this_is_first_occurence_of_user:
                 'cohorts')
 ```
 
-## <a name="url_shorten"></a>URL shortening
+## <a name="url_shorten"></a>Get users' profiles by shortening links
 
 ###How it works
 You create unique short link for each pair (user, link). When user clicks the link, Botan stores his user agent, IP address and other stuff. After that you'll be able to use user segmentation by geography, language, device and operating system (and see corresponding statistics).
