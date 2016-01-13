@@ -231,7 +231,7 @@ if this_is_first_occurence_of_user:
                 'cohorts')
 ```
 
-## <a name="url_shorten"></a>Get users' profiles by shortening links
+## <a name="url-shortening"></a>Get users' profiles by shortening links
 
 ###How it works
 You create unique short link for each pair (user, link). When user clicks the link, Botan stores his user agent, IP address and other stuff. After that you'll be able to use user segmentation by geography, language, device and operating system (and see corresponding statistics).
