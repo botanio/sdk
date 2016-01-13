@@ -5,7 +5,7 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
 
 Botan has 2 main use cases:
  * **Send to Botan info about every message sent by user** and get info like DAU, MAU, Retention, Commands and more complicated staff (read [what data to put into tracking data](#tracking_data) section).
- * **Get users' profiles by shortening links you send to users** — geography, languages, devices, operating systems of your users (read [Get users' profiles by shortening links](#url_shorten) section). 
+ * **Get user profiles by wrapping links you send to them** — geography, languages, devices, operating systems of your users (read [Get user profiles by wrapping links](#url_shorten) section). 
 
 ## Creating an account
  * Go to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub
@@ -231,25 +231,25 @@ if this_is_first_occurence_of_user:
                 'cohorts')
 ```
 
-## <a name="url-shortening"></a>Get users' profiles by shortening links
+## <a name="url-shortening"></a>Get user profiles by wrapping links
 
 ###How it works
 You create unique short link for each pair (user, link). When user clicks the link, Botan stores his user agent, IP address and other stuff. After that you'll be able to use user segmentation by geography, language, device and operating system (and see corresponding statistics).
 
-###What url to shorten
-We suggest you to shorten every url that you send to user. Most often case is sending "please rate us" link — almost every bot asks for rating.
+###What url to wrap
+We suggest you to wrap every url that you send to user. Most often use case is sending "please rate us" link — most popular bots asks for rating in storebot.me.
 
 ###What you will get
-You'll get couple of useful things in the web interface:
+You'll get a lot of useful new data in the web interface:
 
-Countries and regions/cities
+Countries, regions and cities
 ![Countries and regions/cities](docs/geography.png)
-
-Operating systems
-![Operating systems](docs/oses.png)
 
 Devices
 ![Devices](docs/devices.png)
+
+Operating systems
+![Operating systems](docs/oses.png)
 
 Locales
 ![Locales](docs/locales.png)
