@@ -203,8 +203,8 @@ Also you will be able to get userids who performed some particular action (throu
 ![Most active users who did particular events](docs/segment_user_ids2.png)
 
 ###Advanced integration
-Actually, 70% benefit from analytics usage lies in sending right events with right data inside.
-Here is some ways of sending events, which we use. Feel free to contribute your ways or improve existing ones.
+Actually, most benefit from analytics usage lies in sending right events with right data inside.
+Here is some best practices we recommend. Feel free to contribute your ways or improve existing ones.
 
 #####Commands order
 That's how you can see what command users execute after which: 
