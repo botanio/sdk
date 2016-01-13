@@ -4,8 +4,8 @@
 In this document you can find how to setup Yandex.Appmetrica account, as well as examples of Botan SDK usage.
 
 Botan has 2 main use cases:
- * **Send to Botan info about every message sent by user** and get info like DAU, MAU, Retention, Commands and more complicated staff (read [what data to put into tracking data](#tracking_data) section).
- * **Get user profiles by wrapping links you send to them** — geography, languages, devices, operating systems of your users (read [Get user profiles by wrapping links](#url_shorten) section). 
+ * [Send to Botan info about every message sent by user](#tracking_data) and get basic usage stats like DAU, MAU, Retention, Commands and more complicated details.
+ * [Get extended information about users by wrapping links you send to them](#url-shortening) — location, languages, devices and operating systems of your users. 
 
 ## Creating an account
  * Go to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub
