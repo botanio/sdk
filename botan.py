@@ -34,7 +34,7 @@ def shorten_url(url, botan_token, user_id):
     Shorten URL for specified user of a bot
     """
     try:
-        return requests.get(SHORTENER_URL, {
+        return requests.get(SHORTENER_URL, params={
             'token': botan_token,
             'url': url,
             'user_ids': str(user_id),
