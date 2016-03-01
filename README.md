@@ -3,6 +3,9 @@
 [Botan](http://botan.io) is a telegram bot analytics system based on [Yandex.Appmetrica](http://appmetrica.yandex.com/).
 In this document you can find how to setup Yandex.Appmetrica account, as well as examples of Botan SDK usage.
 
+Botan has 2 main use cases:
+ * [Send to Botan info about every message sent by user](#tracking_data) and get basic usage stats like DAU, MAU, Retention, Commands and more complicated details.
+ * [Get extended information about users by wrapping links you send to them](#url-shortening) — location, languages, devices and operating systems of your users. 
 
 ## Creating an account
  * Go to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub
@@ -42,14 +45,21 @@ You can do it with
 	pip install requests
 
 Code:
-
+```python
 	import botan
-	token = 1
-	uid = 2
-	messageDict = {}
-	print botan.track(token, uid, messageDict, 'Search')
 
-It's necessary to pass `uid` (user id you get from Telegram) into python lib calls.
+	botan_token = '.........' # Token got from @botaniobot
+	uid = message.from_user
+	message_dict = message.to_dict()
+	event_name = update.message.text
+	print botan.track(botan_token, uid, message_dict, event_name)
+	
+	.....
+	
+	original_url = ... # some url you want to send to user
+	short_url = botan.shorten_url(original_url, botan_token, uid)
+	# now send short_url to user instead of original_url, and get geography, OS, Device of user
+```
 
 ## <a name="php"></a>PHP example
 You need to put the class in a convenient place.
@@ -62,7 +72,16 @@ public function _incomingMessage($message_json) {
 
     $botan = new Botan($this->token);
     $botan->track($messageData, 'Start');
+    
+    ...
+    
+    $original_url = ...
+    $uid = $message['from']['id']
+    $short_url = $botan->shortenUrl($url, $uid)
+    // now send short_url to user instead of original_url, and get geography, OS, Device of user
 }
+
+
 ```
 
 ## <a name="ruby"></a>Ruby example
@@ -148,9 +167,10 @@ func main() {
 ```
 
 ## <a name="http"></a>HTTP API
+### <a name="http_track"></a>Track message
 The base url is: https://api.botan.io/track
 
-You can put data to Botan using POST method.
+You should put data to Botan using POST method.
 
 The url should look like https://api.botan.io/track?token=BOTAN_TOKEN&uid=UID&name=EVENT_NAME
 
@@ -160,6 +180,15 @@ API response is a json document:
 
 * on success: {"status": "accepted"}
 * on failure: {"status": "failed"} or {"status": "bad request", "info": "some_additional_info_about_error"}
+
+### <a name="http_shorten"></a>Shorten url
+Send GET request to
+
+https://api.botan.io/s/?token={token}&url={original_url}&user_ids={user_id}
+
+You get shortened url in a plain-text response (in case the response code was 200). Codes other than 200 mean that an error occurred.
+
+Also, in case of group chats you can add several user_ids: &user_ids={user_id_1},{user_id_2},{user_id_3}, but currently this data will not be used (because we don't know which particular user clicked link).
 
 ## <a name="tracking_data"></a>What to put into tracking data
 ###Basic integration
@@ -174,8 +203,8 @@ Also you will be able to get userids who performed some particular action (throu
 ![Most active users who did particular events](docs/segment_user_ids2.png)
 
 ###Advanced integration
-Actually, 70% benefit from analytics usage lies in sending right events with right data inside.
-Here is some ways of sending events, which we use. Feel free to contribute your ways or improve existing ones.
+Actually, most benefit from analytics usage lies in sending right events with right data inside.
+Here is some best practices we recommend. Feel free to contribute your ways or improve existing ones.
 
 #####Commands order
 That's how you can see what command users execute after which: 
@@ -202,6 +231,31 @@ if this_is_first_occurence_of_user:
                 'cohorts')
 ```
 
+## <a name="url-shortening"></a>Get user profiles by wrapping links
+
+###How it works
+You create unique short link for each pair (user, link). When user clicks the link, Botan stores his user agent, IP address and other stuff. After that you'll be able to use user segmentation by geography, language, device and operating system (and see corresponding statistics).
+
+###What url to wrap
+We suggest you to wrap every url that you send to user. Most often use case is sending "please rate us" link — most popular bots asks for rating in storebot.me.
+
+###What you will get
+You'll get a lot of useful new data in the web interface:
+
+Countries, regions and cities
+![Countries and regions/cities](docs/geography.png)
+
+Devices
+![Devices](docs/devices.png)
+
+Operating systems
+![Operating systems](docs/oses.png)
+
+Locales
+![Locales](docs/locales.png)
+
+###How to use
+Here you can find examples for [Python](#py), [PHP](#php). Feel free to make pull requests with wrappers for other languages (here's [HTTP spec for the shortener](#http_shorten)).
 
 ##Contribution
 We are welcome any contributions as pull-requests!
