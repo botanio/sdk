@@ -19,11 +19,11 @@ def track(token, uid, message, name='Message'):
     headers = {'Content-type': 'application/json'}
     try:
         r = requests.post(url, data=json.dumps(message), headers=headers)
-        return r.json()
+        return json.loads(r.text)
     except requests.exceptions.Timeout:
         # set up for a retry, or continue in a retry loop
         return False
-    except requests.exceptions.RequestException as e:
+    except (requests.exceptions.RequestException, ValueError) as e:
         # catastrophic error
         print(e)
         return False
