@@ -5,7 +5,7 @@ In this document you can find how to setup Yandex.Appmetrica account, as well as
 
 Botan has 2 main use cases:
  * [Send to Botan info about every message sent by user](#tracking_data) and get basic usage stats like DAU, MAU, Retention, Commands and more complicated details.
- * [Get extended information about users by wrapping links you send to them](#url-shortening) — location, languages, devices and operating systems of your users. 
+ * [Get extended information about users by wrapping links you send to them](#url-shortening) — location, languages, devices and operating systems of your users.
 
 ## Creating an account
  * Go to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub
@@ -36,6 +36,16 @@ Install npm: `npm install botanio`
 var botan = require('botanio')(token);
 
 botan.track(message, 'Start');
+
+var uid = message.from.id;
+var url = 'https://github.com/'; // some url you want to send to user
+botan.shortenUrl(uid, url, function (err, res, body) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(body); // shortened url here
+  }
+});
 ```
 
 ## <a name="py"></a>Python example
@@ -53,9 +63,9 @@ Code:
 	message_dict = message.to_dict()
 	event_name = update.message.text
 	print botan.track(botan_token, uid, message_dict, event_name)
-	
+
 	.....
-	
+
 	original_url = ... # some url you want to send to user
 	short_url = botan.shorten_url(original_url, botan_token, uid)
 	# now send short_url to user instead of original_url, and get geography, OS, Device of user
@@ -72,9 +82,9 @@ public function _incomingMessage($message_json) {
 
     $botan = new Botan($this->token);
     $botan->track($messageData, 'Start');
-    
+
     ...
-    
+
     $original_url = ...
     $uid = $message['from']['id']
     $short_url = $botan->shortenUrl($url, $uid)
@@ -207,8 +217,8 @@ Actually, most benefit from analytics usage lies in sending right events with ri
 Here is some best practices we recommend. Feel free to contribute your ways or improve existing ones.
 
 #####Commands order
-That's how you can see what command users execute after which: 
-```python 
+That's how you can see what command users execute after which:
+```python
 botan.track(<botan_token>, <user_who_wrote_to_bot>, {last_command: current_command}, "command_order")
 ```
 Also you can send not pairs, but triples of commands:
@@ -221,7 +231,7 @@ Using this, we can see, for example, what commands users execute after /start:
 Here is how you can tag every user with time cohort based on what was his first day at your service. Later you can use to see how your bot's performance has changed over time:
 ```python
 if this_is_first_occurence_of_user:
-    botan.track(<botan_token>, 
+    botan.track(<botan_token>,
                 <user_who_wrote_to_bot>,
                 {
                         'daily': message.date.strftime('%Y-%m-%d'),
