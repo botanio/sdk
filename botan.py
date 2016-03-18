@@ -10,15 +10,19 @@
 import requests
 import json
 
-URL_TEMPLATE = 'https://api.botan.io/track?token={token}&uid={uid}&name={name}'
+
+TRACK_URL = 'https://api.botan.io/track'
 SHORTENER_URL = 'https://api.botan.io/s/'
 
 
 def track(token, uid, message, name='Message'):
-    url = URL_TEMPLATE.format(token=str(token), uid=str(uid), name=name)
-    headers = {'Content-type': 'application/json'}
     try:
-        r = requests.post(url, data=json.dumps(message), headers=headers)
+        r = requests.post(
+            TRACK_URL,
+            params={"token": token, "uid": uid, "name": name},
+            data=json.dumps(message),
+            headers={'Content-type': 'application/json'},
+        )
         return json.loads(r.text)
     except requests.exceptions.Timeout:
         # set up for a retry, or continue in a retry loop
