@@ -22,6 +22,7 @@ We have libraries for the following languages:
  * [Python](#py)
  * [Ruby](#ruby)
  * [Rust](#rust)
+ * [.Net](#dotnet)
 
 Alternatively, you can use Botan API via [plain HTTP calls](#http).
 
@@ -174,6 +175,45 @@ func main() {
 
 	<-ch // Synchronization receive
 }
+```
+
+## <a name="dotnet"></a>.Net example
+
+```
+Install-Package BotanIO.Net
+```
+
+```C#
+var botan = new BotanIO.Api.Botan("<botan-io-token-goes-here>");
+
+// TRACKING
+
+	//
+	// Basic scenario
+	//
+	botan.Track("Search", new { some_metric = 100, another_metric = 100 }, "1234567890");
+	
+	//
+	// Advance scenario
+	//
+	
+	// Date cohorts
+	botan.Track("Cohorts", DateTime.UtcNow /* could have been 'webhookUpdateObject.date' */, "1234567890");
+	
+	// Single depth, commands order
+	botan.Track("CommandOrders", new { last_command = current_command }, "1234567890");
+	
+	// Double depth, commands order
+	botan.Track(
+		"CommandOrders", 
+		new { before_last_command = new { last_command = current_command } }, 
+		"1234567890"
+	);
+
+// URL SHORTENING
+
+	var shortenedUrl = botan.ShortenUrl("http://botframework.com");
+	// Use your shotenedUrl e.g. inject in response to bot user, send as SMS, etc.
 ```
 
 ## <a name="http"></a>HTTP API
