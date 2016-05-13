@@ -182,6 +182,7 @@ func main() {
 ```
 Install-Package BotanIO.Net
 ```
+[.Net SDK source code is available here](https://github.com/adebisi-fa/botan-io-dotnet/tree/master/src/api).
 
 ```C#
 var botan = new BotanIO.Api.Botan("<botan-io-token-goes-here>");
