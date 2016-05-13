@@ -213,7 +213,7 @@ var botan = new BotanIO.Api.Botan("<botan-io-token-goes-here>");
 
 // URL SHORTENING
 
-	var shortenedUrl = botan.ShortenUrl("http://botframework.com");
+	var shortenedUrl = botan.ShortenUrl("http://botframework.com", "1234567890");
 	// Use your shotenedUrl e.g. inject in response to bot user, send as SMS, etc.
 ```
 
