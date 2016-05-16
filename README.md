@@ -69,6 +69,34 @@ Code:
 	original_url = ... # some url you want to send to user
 	short_url = botan.shorten_url(original_url, botan_token, uid)
 	# now send short_url to user instead of original_url, and get geography, OS, Device of user
+	
+	
+	import botan
+
+# In case if you use pyTelegramBotAPI 
+
+	class BotanMessage(object):
+            chat_id = None
+
+            def __init__(self, chat_id):
+                self.chat_id = chat_id
+
+            def to_json(self):
+                return "{}"
+
+	botan_token = '.........' # Token got from @botaniobot
+	uid = message.chat.id
+        msg = BotanMessage(message.chat.id)
+	message_dict = msg.to_json
+	event_name = message.text
+	print botan.track(botan_token, uid, message_dict, event_name)
+
+	.....
+
+	original_url = ... # some url you want to send to user
+	short_url = botan.shorten_url(original_url, botan_token, uid)
+	# now send short_url to user instead of original_url, and get geography, OS, Device of user
+
 ```
 
 ## <a name="php"></a>PHP example
