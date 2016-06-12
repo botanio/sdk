@@ -35,6 +35,7 @@ test-suite botan-test
                      , http-client-tls
                      , servant-client
                      , text
+                     , async
                      , hspec
                      , botan
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N

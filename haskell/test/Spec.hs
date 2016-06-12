@@ -13,6 +13,7 @@ import           Servant.Client
 import           Web.Botan.Sdk
 import           GHC.Generics
 import           Data.Aeson
+import           Control.Concurrent.Async
 
 main :: IO ()
 main = hspec $
@@ -20,7 +21,8 @@ main = hspec $
     manager <- runIO $ newManager tlsManagerSettings
     it "should track actions" $ do
       let test = toJSON $ Test "A" "B"
-      res <- track "token" "user2222" test "test_action" manager
+      a <- async $ track "token" "user2222" test "test_action" manager
+      res <- wait a
       print res
     it "should shorten url" $ do
       res <- shortenUrl "token" "http://ya.ru" "51123333" manager

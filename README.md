@@ -186,15 +186,17 @@ import           Servant.Client
 import           Web.Botan.Sdk
 import           GHC.Generics
 import           Data.Aeson
+import           Control.Concurrent.Async
 
 main :: IO ()
 main = do
   manager <- runIO $ newManager tlsManagerSettings
-  let test = toJSON $ Test "A" "B"  
-  res <- track "token" "user2222" test "test_action" manager
+  let message = toJSON $ AnyMessage "A" "B"
+  a <- async $ track "token" "user2222" message "test_action" manager
+  res <- wait a -- not real use case
   print res
 
-data Test = Test 
+data AnyMessage = AnyMessage
   { 
     a :: Text
   , b :: Text
