@@ -22,6 +22,7 @@ We have libraries for the following languages:
  * [Python](#py)
  * [Ruby](#ruby)
  * [Rust](#rust)
+ * [Haskell](#haskell)
 
 Alternatively, you can use Botan API via [plain HTTP calls](#http).
 
@@ -174,6 +175,30 @@ func main() {
 
 	<-ch // Synchronization receive
 }
+```
+
+## <a name="haskell"></a>Haskell example
+
+```haskell
+import           Network.HTTP.Client      (newManager)
+import           Network.HTTP.Client.TLS  (tlsManagerSettings)
+import           Servant.Client
+import           Web.Botan.Sdk
+import           GHC.Generics
+import           Data.Aeson
+
+main :: IO ()
+main = do
+  manager <- runIO $ newManager tlsManagerSettings
+  let test = toJSON $ Test "A" "B"  
+  res <- track "token" "user2222" test "test_action" manager
+  print res
+
+data Test = Test 
+  { 
+    a :: Text
+  , b :: Text
+  } deriving (Show, Generic, ToJSON)
 ```
 
 ## <a name="http"></a>HTTP API
