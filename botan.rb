@@ -16,6 +16,7 @@ module Botan
       uri = URI(URI_TEMPLATE % {token: token, uid: uid, name: name})
       puts uri
       http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
       body = JSON.dump(message)
 
       req =  Net::HTTP::Post.new(uri)
@@ -23,7 +24,7 @@ module Botan
       req.body = body
       # Fetch Request
       res = http.request(req)
-      return JSON.parse(res.body)
+      JSON.parse(res.body)
     rescue StandardError => e
       puts "HTTP Request failed (#{e.message})"
     end
