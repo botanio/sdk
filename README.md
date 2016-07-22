@@ -1,5 +1,7 @@
 #Botan SDK
 
+[![Join the chat at https://gitter.im/moldabekov/sdk](https://badges.gitter.im/moldabekov/sdk.svg)](https://gitter.im/moldabekov/sdk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [Botan](http://botan.io) is a telegram bot analytics system based on [Yandex.Appmetrica](http://appmetrica.yandex.com/).
 In this document you can find how to setup Yandex.Appmetrica account, as well as examples of Botan SDK usage.
 
