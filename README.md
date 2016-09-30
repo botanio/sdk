@@ -50,7 +50,7 @@ botan.shortenUrl(uid, url, function (err, res, body) {
 ```
 
 ## <a name="py"></a>Python example
-You need to install requests library using pip.
+You need to install botanio library using pip.
 
 	pip install botanio
 
