@@ -3,12 +3,15 @@ package botan
 import (
 	"encoding/json"
 	"strconv"
-
+	"github.com/valyala/fasthttp"
 	"github.com/rockneurotiko/gorequest"
 )
 
-const URL = "https://api.botan.io/track"
-
+const (
+	URL = "https://api.botan.io/track"
+	shortenURL = "https://api.botan.io/s/"
+)
+	
 type Answer struct {
 	Status string `json:"status"`
 	Info   string `json:"info,omitempty"`
@@ -58,4 +61,12 @@ func (self Botan) TrackAsync(uid int, message interface{}, name string, f func(A
 		ans, err := self.Track(uid, message, name)
 		f(ans, err)
 	}()
+}
+
+func (self Botan) createShortenURL(uid ...int, url string) (string, err) {
+	status, shortURL, err := fasthttp.Get(nil, shortenURL+"?token="+self.Token+"&user_ids="+strconv.Itoa(uid)+"&url="+url)
+	if err != nil || status != 200 {
+		return url, err // Just refund the original URL
+	}
+	return string(shortURL), nil
 }
