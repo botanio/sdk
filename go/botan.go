@@ -2,16 +2,14 @@ package botan
 
 import (
 	"encoding/json"
-	"strconv"
-	"github.com/valyala/fasthttp"
 	"github.com/rockneurotiko/gorequest"
+	"github.com/valyala/fasthttp"
+	"strconv"
+	"strings"
 )
 
-const (
-	URL = "https://api.botan.io/track"
-	shortenURL = "https://api.botan.io/s/"
-)
-	
+const URL = "https://api.botan.io/track"
+
 type Answer struct {
 	Status string `json:"status"`
 	Info   string `json:"info,omitempty"`
@@ -63,8 +61,17 @@ func (self Botan) TrackAsync(uid int, message interface{}, name string, f func(A
 	}()
 }
 
-func (self Botan) createShortenURL(uid ...int, url string) (string, err) {
-	status, shortURL, err := fasthttp.Get(nil, shortenURL+"?token="+self.Token+"&user_ids="+strconv.Itoa(uid)+"&url="+url)
+func (self Botan) CreateShortenURL(url string, uid ...int) (string, error) {
+	uids := make([]string, len(uid))
+	if len(uid) > 1 {
+		for k, v := range uid {
+			uids[k] = strconv.Itoa(v)
+		}
+	} else {
+		uids[0] = strconv.Itoa(uid[0])
+	}
+	getRequest := "https://api.botan.io/s/?token=" + self.Token + "&user_ids=" + strings.Join(uids, ",") + "&url=" + url
+	status, shortURL, err := fasthttp.Get(nil, getRequest)
 	if err != nil || status != 200 {
 		return url, err // Just refund the original URL
 	}
