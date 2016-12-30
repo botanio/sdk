@@ -88,7 +88,7 @@ public function _incomingMessage($message_json) {
 
     $original_url = ...
     $uid = $message['from']['id']
-    $short_url = $botan->shortenUrl($url, $uid)
+    $short_url = $botan->shortenUrl($original_url, $uid)
     // now send short_url to user instead of original_url, and get geography, OS, Device of user
 }
 
