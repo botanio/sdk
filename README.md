@@ -8,10 +8,10 @@ Botan has 2 main use cases:
  * [Get extended information about users by wrapping links you send to them](#url-shortening) — location, languages, devices and operating systems of your users.
 
 ## Creating an account
- * Go to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub
- * Use Add bot command to get a token.
+ * Register at http://appmetrica.yandex.com/
+ * After registration you will be prompted to create Application. Please use @YourBotName as a name.
+ * Save an API key from settings page, you will use it as a token for Botan API calls.
  * Download lib for your language, and use it as described below. Don`t forget to insert your token!
- * Come back to Botaniobot https://telegram.me/botaniobot?start=src%3Dgithub and use Statistics command to see your stats.
 
 ## SDK usage
 We have libraries for the following languages:
@@ -209,7 +209,7 @@ The base url is: https://api.botan.io/track
 
 You should put data to Botan using POST method.
 
-The url should look like https://api.botan.io/track?token=BOTAN_TOKEN&uid=UID&name=EVENT_NAME
+The url should look like https://api.botan.io/track?token=API_KEY&uid=UID&name=EVENT_NAME
 
 Please provide a json document as the post body.
 
