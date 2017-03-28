@@ -32,7 +32,7 @@ Also, pay attention to ["what data to put into tracking data"](#tracking_data) s
 90% benefit from analytics usage lies in right integration;)
 
 ## <a name="js"></a>JavaScript example
-Install npm: `npm install botanio`
+Install via npm: `npm install botanio`
 ```js
 var botan = require('botanio')(token);
 
@@ -54,6 +54,7 @@ You need to install requests library to use python botan lib.
 You can do it with
 
 	pip install requests
+Install via pip: `pip install botanio`
 
 Code:
 ```python
