@@ -54,11 +54,12 @@ You need to install requests library to use python botan lib.
 You can do it with
 
 	pip install requests
+
 Install via pip: `pip install botanio`
 
 Code:
 ```python
-	import botan
+	from botanio import botan
 
 	botan_token = '.........' # Token got from @botaniobot
 	uid = message.from_user
