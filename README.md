@@ -233,11 +233,11 @@ Also, in case of group chats you can add several user_ids: &user_ids={user_id_1}
 botan.track(<botan_token>, <user_who_wrote_to_bot>, <user_message_in_json_format>, <command_name>)
 ```
 * **command_name** - we recommend to put here not just message text, but command. Example: user wrote '/search californication', put to **command_name** 'Search'. This will help you to aggregate type of user's input and get such report:
-![Result of basic usage of botan](docs/basic_usage.png)
+![Result of basic usage of botan](/docs/basic_usage.png)
 * **user_message_in_json_format** - whole message got from Telegram. For example, using python-telegram-bot you can do it in such way: message.to_dict(). Passing whole message, you will be able to see nice data like number of group chats among all chats:
-![Group and private chats amount](docs/chat_type.png)
+![Group and private chats amount](/docs/chat_type.png)
 Also you will be able to get userids who performed some particular action (through segmentation) or your most active users and contact them:
-![Most active users who did particular events](docs/segment_user_ids2.png)
+![Most active users who did particular events](/docs/segment_user_ids2.png)
 
 ###Advanced integration
 Actually, most benefit from analytics usage lies in sending right events with right data inside.
@@ -253,7 +253,7 @@ Also you can send not pairs, but triples of commands:
 botan.track(<botan_token>, <user_who_wrote_to_bot>, {before_last_command: {last_command: current_command}}, "command_order")
 ```
 Using this, we can see, for example, what commands users execute after /start:
-![Commands after start](docs/command_order.png)
+![Commands after start](/docs/command_order.png)
 #####Date cohorts
 Here is how you can tag every user with time cohort based on what was his first day at your service. Later you can use to see how your bot's performance has changed over time:
 ```python
@@ -280,16 +280,16 @@ We suggest you to wrap every url that you send to user. Most often use case is s
 You'll get a lot of useful new data in the web interface:
 
 Countries, regions and cities
-![Countries and regions/cities](docs/geography.png)
+![Countries and regions/cities](/docs/geography.png)
 
 Devices
-![Devices](docs/devices.png)
+![Devices](/docs/devices.png)
 
 Operating systems
-![Operating systems](docs/oses.png)
+![Operating systems](/docs/oses.png)
 
 Locales
-![Locales](docs/locales.png)
+![Locales](/docs/locales.png)
 
 ###How to use
 Here you can find examples for [Python](#py), [PHP](#php). Feel free to make pull requests with wrappers for other languages (here's [HTTP spec for the shortener](#http_shorten)).
