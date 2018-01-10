@@ -1,4 +1,4 @@
-#Botan SDK
+# Botan SDK
 
 [Botan](http://botan.io) is a telegram bot analytics system based on [Yandex.Appmetrica](http://appmetrica.yandex.com/).
 In this document you can find how to setup Yandex.Appmetrica account, as well as examples of Botan SDK usage.
@@ -228,7 +228,7 @@ You get shortened url in a plain-text response (in case the response code was 20
 Also, in case of group chats you can add several user_ids: &user_ids={user_id_1},{user_id_2},{user_id_3}, but currently this data will not be used (because we don't know which particular user clicked link).
 
 ## <a name="tracking_data"></a>What to put into tracking data
-###Basic integration
+### Basic integration
 ```python
 botan.track(<botan_token>, <user_who_wrote_to_bot>, <user_message_in_json_format>, <command_name>)
 ```
@@ -239,11 +239,11 @@ botan.track(<botan_token>, <user_who_wrote_to_bot>, <user_message_in_json_format
 Also you will be able to get userids who performed some particular action (through segmentation) or your most active users and contact them:
 ![Most active users who did particular events](docs/segment_user_ids2.png)
 
-###Advanced integration
+### Advanced integration
 Actually, most benefit from analytics usage lies in sending right events with right data inside.
 Here is some best practices we recommend. Feel free to contribute your ways or improve existing ones.
 
-#####Commands order
+##### Commands order
 That's how you can see what command users execute after which:
 ```python
 botan.track(<botan_token>, <user_who_wrote_to_bot>, {last_command: current_command}, "command_order")
@@ -254,7 +254,8 @@ botan.track(<botan_token>, <user_who_wrote_to_bot>, {before_last_command: {last_
 ```
 Using this, we can see, for example, what commands users execute after /start:
 ![Commands after start](docs/command_order.png)
-#####Date cohorts
+
+##### Date cohorts
 Here is how you can tag every user with time cohort based on what was his first day at your service. Later you can use to see how your bot's performance has changed over time:
 ```python
 if this_is_first_occurence_of_user:
@@ -270,13 +271,13 @@ if this_is_first_occurence_of_user:
 
 ## <a name="url-shortening"></a>Get user profiles by wrapping links
 
-###How it works
+### How it works
 You create unique short link for each pair (user, link). When user clicks the link, Botan stores his user agent, IP address and other stuff. After that you'll be able to use user segmentation by geography, language, device and operating system (and see corresponding statistics).
 
-###What url to wrap
+### What url to wrap
 We suggest you to wrap every url that you send to user. Most often use case is sending "please rate us" link — most popular bots asks for rating in storebot.me.
 
-###What you will get
+### What you will get
 You'll get a lot of useful new data in the web interface:
 
 Countries, regions and cities
@@ -291,10 +292,10 @@ Operating systems
 Locales
 ![Locales](docs/locales.png)
 
-###How to use
+### How to use
 Here you can find examples for [Python](#py), [PHP](#php). Feel free to make pull requests with wrappers for other languages (here's [HTTP spec for the shortener](#http_shorten)).
 
-##Contribution
+## Contribution
 We are welcome any contributions as pull-requests!
 
 Feel free to write more libraries for the languages we are not supporting yet.
