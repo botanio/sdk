@@ -50,14 +50,13 @@ botan.shortenUrl(uid, url, function (err, res, body) {
 ```
 
 ## <a name="py"></a>Python example
-You need to install requests library to use python botan lib.
-You can do it with
+You need to install botanio library using pip.
 
-	pip install requests
+	pip install botanio
 
 Code:
 ```python
-	import botan
+	from botanio import botan
 
 	botan_token = '.........' # Token got from @botaniobot
 	uid = message.from_user

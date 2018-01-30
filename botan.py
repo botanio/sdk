@@ -1,9 +1,6 @@
-# ----------------
-# dont forget 'pip install requests' first
-# ----------------
 # usage example:
 #
-# import botan
+# from botanio import botan
 #
 # print botan.track(1111, 1, {'text':2}, 'Search')
 
