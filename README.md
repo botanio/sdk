@@ -1,4 +1,13 @@
-#Botan SDK
+## This service will be shut down on 25th May 2018
+
+Due to many reasons, we're going to shut down this service soon.
+You can use these alternatives:
+ * [Chatbase](https://chatbase.com/welcome) — bot analytics from Google,
+ * [Dashbot](https://www.dashbot.io),
+ * [Botanalytics](https://botanalytics.co),
+ * [Amplitude](https://amplitude.com) — it has generous free plan with 10M events per month. It's a powerful analytics but have nothing specific to bots.
+
+## About this service
 
 [Botan](http://botan.io) is a telegram bot analytics system based on [Yandex.Appmetrica](http://appmetrica.yandex.com/).
 In this document you can find how to setup Yandex.Appmetrica account, as well as examples of Botan SDK usage.
