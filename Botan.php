@@ -92,7 +92,7 @@ class Botan {
 
         $HTTPCode = $this->getHTTPResponseCode($http_response_header);
         if ($HTTPCode !== 200)
-            throw new \Exception("Bad HTTP responce code: $HTTPCode".print_r($http_response_header, true));
+            throw new \Exception("Bad HTTP response code: $HTTPCode".print_r($http_response_header, true));
 
         $responseData = json_decode($response, true);
         if ($responseData === false)
