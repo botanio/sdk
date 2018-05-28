@@ -26,7 +26,7 @@ async def track(token, uid, message, name='Message', loop=None):
         with aiohttp.ClientSession(loop=loop) as session:
             async with session.post(TRACK_URL, params=params, data=data, headers=headers) as resp:
                 return await resp.json()
-    except (aiohttp.errors.ClientError, ValueError) as e:
+    except (aiohttp.client_exceptions.ClientError, ValueError) as e:
         print(e)
         return False
 
@@ -37,6 +37,6 @@ async def shorten_url(url, botan_token, user_id, loop=None):
         with aiohttp.ClientSession(loop=loop) as session:
             async with session.get(SHORTENER_URL, params=params) as resp:
                 return await resp.text()
-    except aiohttp.errors.ClientError as e:
+    except aiohttp.client_exceptions.ClientError as e:
         print(e)
         return url
