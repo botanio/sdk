@@ -32,6 +32,7 @@ We have libraries for the following languages:
  * [Ruby](#ruby)
  * [Rust](#rust)
  * [Haskell](#haskell)
+ * [Qt5] (#qt5)
 
 Alternatively, you can use Botan API via [plain HTTP calls](#http).
 
@@ -210,6 +211,19 @@ data AnyMessage = AnyMessage
     a :: Text
   , b :: Text
   } deriving (Show, Generic, ToJSON)
+```
+
+
+## <a name="qt5"></a>Qt5 example
+
+```qt5
+    QVariantMap params;
+    params["int_metric"] = 1234;
+    params["double_metric"] = 12.34;
+    params["string_metric"] = "1234";
+    params["bool_metric"] = true;
+    //call asynchronously "track" request
+    QBotanioTrackApi::newInstance()->track("SOME_PRIVATE_KEY", 1234, "TEST_EVENT", params);
 ```
 
 ## <a name="http"></a>HTTP API
